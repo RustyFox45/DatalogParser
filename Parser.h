@@ -78,7 +78,7 @@ public:
     }
     void addNewRule() {
         Rule currentRule(currentPredicates.front());
-        for (int i = 1; i < currentPredicates.size() - 1; ++i) {
+        for (int i = 1; i < currentPredicates.size(); ++i) {
             currentRule.addPredicate(currentPredicates.at(i));
         }
         currentRules.push_back(currentRule);

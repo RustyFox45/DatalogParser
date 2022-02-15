@@ -19,6 +19,9 @@ public:
     void addParameter(Parameter newParam) {
         myParameters.push_back(newParam);
     }
+    vector<Parameter> getParameters() const {
+        return myParameters;
+    }
 
     string toString() const {
         stringstream out;

@@ -48,6 +48,7 @@ public:
         stringstream myFactsStream;
         stringstream myRulesStream;
         stringstream myQueriesStream;
+        stringstream myDomainStream;
         for (int i = 0; i < mySchemes.size(); ++i) {
             mySchemesStream << "\n  " << mySchemes[i].toString();
         }
@@ -60,6 +61,16 @@ public:
         for (int i = 0; i < myQueries.size(); ++i) {
             myQueriesStream << "\n  " << myQueries[i].toString();
         }
+        set<string> domainSet;
+        for (int i = 0; i < myFacts.size(); ++i) {
+            vector<Parameter> params = myFacts[i].getParameters();
+            for (Parameter p : params) {
+                domainSet.insert("  " + p.toString());
+            }
+        }
+        for (string s : domainSet) {
+            myDomainStream << s << endl;
+        }
         out << "Schemes(" << mySchemes.size() << "):"
             << mySchemesStream.str()
             << "\nFacts(" << myFacts.size() << "):"
@@ -68,7 +79,8 @@ public:
             << myRulesStream.str()
             << "\nQueries(" << myQueries.size() << "):"
             << myQueriesStream.str()
-            << "\nDomain(" << "):";
+            << "\nDomain(" << domainSet.size() << "):\n"
+            << myDomainStream.str();
         return out.str();
     }
 
