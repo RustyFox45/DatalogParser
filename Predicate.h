@@ -26,7 +26,7 @@ public:
     string toString() const {
         stringstream out;
         stringstream parametersList;
-        for (int i = 0; i < myParameters.size(); ++i) {
+        for (long unsigned int i = 0; i < myParameters.size(); ++i) {
             if (i > 0) {
                 parametersList << "," << myParameters[i].toString();
             } else {

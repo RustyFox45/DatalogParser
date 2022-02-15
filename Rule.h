@@ -24,7 +24,7 @@ public:
     string toString() const {
         stringstream out;
         stringstream myPredList;
-        for (int i = 0; i < predicateList.size(); ++i) {
+        for (long unsigned int i = 0; i < predicateList.size(); ++i) {
             if (i > 0) {
                 myPredList << "," << predicateList[i].toString();
             } else {

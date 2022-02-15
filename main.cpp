@@ -54,11 +54,12 @@ int main(int argc, char* argv[]) {
     } while (true);
 
     Parser parser(tokenVector);
-    DatalogProgram datalogProgram = parser.datalogProgram();
-
-    if (parser.errorString == "") {
+    DatalogProgram datalogProgram;
+    try {
+        datalogProgram = parser.datalogProgram();
         out << "Success!\n" << datalogProgram << endl;
-    } else {
+    }
+    catch (const std::invalid_argument& e) {
         out << parser.errorString;
     }
 

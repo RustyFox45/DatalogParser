@@ -26,6 +26,7 @@ public:
     }
     void throwError(Token t) {
         errorString = "Failure!\n  " + t.toString();
+        throw std::invalid_argument("error");
     }
     void match(TokenType t) {
         if (tokenType() == t) {
@@ -79,7 +80,7 @@ public:
     }
     void addNewRule() {
         Rule currentRule(currentPredicates.front());
-        for (int i = 1; i < currentPredicates.size(); ++i) {
+        for (long unsigned int i = 1; i < currentPredicates.size(); ++i) {
             currentRule.addPredicate(currentPredicates.at(i));
         }
         currentRules.push_back(currentRule);

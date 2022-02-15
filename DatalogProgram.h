@@ -22,22 +22,22 @@ public:
     DatalogProgram() {}
 
     void setSchemes(vector<Predicate> newPred) {
-        for (int i = 0; i < newPred.size(); ++i) {
+        for (long unsigned int i = 0; i < newPred.size(); ++i) {
             mySchemes.push_back(newPred[i]);
         }
     }
     void setFacts(vector<Predicate> newPred) {
-        for (int i = 0; i < newPred.size(); ++i) {
+        for (long unsigned int i = 0; i < newPred.size(); ++i) {
             myFacts.push_back(newPred[i]);
         }
     }
     void setRules(vector<Rule> newRule) {
-        for (int i = 0; i < newRule.size(); ++i) {
+        for (long unsigned int i = 0; i < newRule.size(); ++i) {
             myRules.push_back(newRule[i]);
         }
     }
     void setQueries(vector<Predicate> newPred) {
-        for (int i = 0; i < newPred.size(); ++i) {
+        for (long unsigned int i = 0; i < newPred.size(); ++i) {
             myQueries.push_back(newPred[i]);
         }
     }
@@ -49,20 +49,20 @@ public:
         stringstream myRulesStream;
         stringstream myQueriesStream;
         stringstream myDomainStream;
-        for (int i = 0; i < mySchemes.size(); ++i) {
+        for (long unsigned int i = 0; i < mySchemes.size(); ++i) {
             mySchemesStream << "\n  " << mySchemes[i].toString();
         }
-        for (int i = 0; i < myFacts.size(); ++i) {
+        for (long unsigned int i = 0; i < myFacts.size(); ++i) {
             myFactsStream << "\n  " << myFacts[i].toString();
         }
-        for (int i = 0; i < myRules.size(); ++i) {
+        for (long unsigned int i = 0; i < myRules.size(); ++i) {
             myRulesStream << "\n  " << myRules[i].toString();
         }
-        for (int i = 0; i < myQueries.size(); ++i) {
+        for (long unsigned int i = 0; i < myQueries.size(); ++i) {
             myQueriesStream << "\n  " << myQueries[i].toString();
         }
         set<string> domainSet;
-        for (int i = 0; i < myFacts.size(); ++i) {
+        for (long unsigned int i = 0; i < myFacts.size(); ++i) {
             vector<Parameter> params = myFacts[i].getParameters();
             for (Parameter p : params) {
                 domainSet.insert("  " + p.toString());
