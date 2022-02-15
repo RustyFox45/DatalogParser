@@ -65,7 +65,7 @@ int main(int argc, char* argv[]) {
     in.close();
     out.close();
 
-
+    cout << "Hi" << endl;
 
     out << "Total Tokens = " << numTokens;
 
