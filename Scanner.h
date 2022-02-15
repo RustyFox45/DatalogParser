@@ -65,7 +65,7 @@ public:
                     break;
                 }
                 case ':': {
-                    if (input.length() > 1) {
+                    if (!isspace(input.at(1))) {
                         if (input[1] == '-') {
                             type = COLON_DASH;
                             mySize = 2;
@@ -240,9 +240,9 @@ public:
     }
 
     string stringToken(string myString, bool& setUndefined) {
-        string returnString = "";
+        string returnString = "\'";
         char currChar;
-        for (int i = 0; currChar != '\''; i++) {
+        for (int i = 1; currChar != '\''; i++) {
             currChar = myString.at(i);
             returnString.push_back(currChar);
             if (myString.empty()) {

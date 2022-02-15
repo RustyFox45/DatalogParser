@@ -6,10 +6,9 @@
 			[
 				{
 					"build" : ".",
-					"jsonFile" : "directory-.-Debug-f5ebdc15457944623624.json",
 					"minimumCMakeVersion" : 
 					{
-						"string" : "3.21"
+						"string" : "3.17"
 					},
 					"projectIndex" : 0,
 					"source" : ".",
@@ -39,7 +38,7 @@
 				{
 					"directoryIndex" : 0,
 					"id" : "DatalogParser::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-DatalogParser-Debug-c8ebe779e07d1cefbb67.json",
+					"jsonFile" : "target-DatalogParser-Debug-995ae7029eec6b2409da.json",
 					"name" : "DatalogParser",
 					"projectIndex" : 0
 				}
@@ -49,12 +48,12 @@
 	"kind" : "codemodel",
 	"paths" : 
 	{
-		"build" : "/Users/toddlawson/My Drive/Personal/Logan/CS236/DatalogParser/cmake-build-debug",
-		"source" : "/Users/toddlawson/My Drive/Personal/Logan/CS236/DatalogParser"
+		"build" : "/Users/loganlawson/CLionProjects/BYU/CS236/DatalogParser/cmake-build-debug",
+		"source" : "/Users/loganlawson/CLionProjects/BYU/CS236/DatalogParser"
 	},
 	"version" : 
 	{
 		"major" : 2,
-		"minor" : 3
+		"minor" : 0
 	}
 }
