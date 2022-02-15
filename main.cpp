@@ -56,7 +56,11 @@ int main(int argc, char* argv[]) {
     Parser parser(tokenVector);
     DatalogProgram datalogProgram = parser.datalogProgram();
 
-    out << datalogProgram << endl;
+    if (parser.errorString == "") {
+        out << "Success!\n" << datalogProgram << endl;
+    } else {
+        out << parser.errorString;
+    }
 
     // Clean up memory
     for(Token* t : tokenVector) {

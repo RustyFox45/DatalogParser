@@ -16,6 +16,7 @@ private:
     vector<Rule> currentRules;
 
 public:
+    string errorString = "";
     Parser(const vector<Token*>& tokens) : tokens(tokens) {}
     TokenType tokenType() {
         return tokens.at(0)->getTypeName();
@@ -23,14 +24,14 @@ public:
     void advanceToken() {
         tokens.erase(tokens.begin());
     }
-    void throwError() {
-        cout << "error" << endl;
+    void throwError(Token t) {
+        errorString = "Failure!\n  " + t.toString();
     }
     void match(TokenType t) {
         if (tokenType() == t) {
             advanceToken();
         } else {
-            throwError();
+            throwError(*tokens.at(0));
         }
     }
 
@@ -104,7 +105,7 @@ public:
             idList();
             match(RIGHT_PAREN);
         } else {
-            throwError();
+            throwError(*tokens.at(0));
         }
     }
     void fact() {
@@ -118,7 +119,7 @@ public:
             match(RIGHT_PAREN);
             match(PERIOD);
         } else {
-            throwError();
+            throwError(*tokens.at(0));
         }
     }
     void rule() {
@@ -129,7 +130,7 @@ public:
             predicateList();
             match(PERIOD);
         } else {
-            throwError();
+            throwError(*tokens.at(0));
         }
     }
     void query() {
@@ -137,7 +138,7 @@ public:
             predicate();
             match(Q_MARK);
         } else {
-            throwError();
+            throwError(*tokens.at(0));
         }
     }
 
