@@ -87,6 +87,9 @@ public:
             case FILE_END: {
                 return "FILE_END";
             }
+            default: {
+                return "UNDEFINED";
+            }
         }
     }
 
