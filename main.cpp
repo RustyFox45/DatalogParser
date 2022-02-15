@@ -31,16 +31,18 @@ int main(int argc, char* argv[]) {
     ifstream in(inputFileName);
     ofstream out(outputFileName);
 
-    string myInputString = myInput(in);
+    string inputString = myInput(in);
 
-    Scanner s = Scanner(myInputString);
+    Scanner s = Scanner(inputString);
     Token* t;
+
+    vector<Token*> tokenVector;
 
     int numTokens = 0;
     do {
         t = s.scanToken();
         if (t!= nullptr) {
-            out << t->toString() << endl;
+            tokenVector.push_back(t);
             if (t->getTypeName() == FILE_END) {
                 numTokens++;
                 break;
@@ -50,6 +52,20 @@ int main(int argc, char* argv[]) {
             break;
         }
     } while (true);
+
+    Parser parser(tokenVector);
+    DatalogProgram datalogProgram = parser.datalogProgram();
+
+    out << datalogProgram << endl;
+
+    // Clean up memory
+    for(Token* t : tokenVector) {
+        delete t;
+    }
+    in.close();
+    out.close();
+
+
 
     out << "Total Tokens = " << numTokens;
 

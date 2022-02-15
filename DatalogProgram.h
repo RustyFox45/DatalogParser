@@ -42,23 +42,23 @@ public:
         }
     }
 
-    string toString() {
+    string toString() const {
         stringstream out;
         stringstream mySchemesStream;
         stringstream myFactsStream;
         stringstream myRulesStream;
         stringstream myQueriesStream;
         for (int i = 0; i < mySchemes.size(); ++i) {
-                mySchemesStream << "\n" << mySchemes[i].toString();
-            }
+            mySchemesStream << "\n  " << mySchemes[i].toString();
+        }
         for (int i = 0; i < myFacts.size(); ++i) {
-            myFactsStream << "\n" << myFacts[i].toString();
+            myFactsStream << "\n  " << myFacts[i].toString();
         }
         for (int i = 0; i < myRules.size(); ++i) {
-            myRulesStream << "\n" << myRules[i].toString();
+            myRulesStream << "\n  " << myRules[i].toString();
         }
         for (int i = 0; i < myQueries.size(); ++i) {
-            myQueriesStream << "\n" << myQueries[i].toString();
+            myQueriesStream << "\n  " << myQueries[i].toString();
         }
         out << "Schemes(" << mySchemes.size() << "):"
             << mySchemesStream.str()
@@ -70,6 +70,11 @@ public:
             << myQueriesStream.str()
             << "\nDomain(" << "):";
         return out.str();
+    }
+
+    friend ostream &operator<<(ostream &os, const DatalogProgram &item) {
+        os << item.toString();
+        return os;
     }
 
 };

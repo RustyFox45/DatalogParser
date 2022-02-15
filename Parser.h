@@ -11,14 +11,14 @@
 
 class Parser {
 private:
-    vector<Token> tokens;
+    vector<Token*> tokens;
     vector<Predicate> currentPredicates;
     vector<Rule> currentRules;
 
 public:
-    Parser(const vector<Token>& tokens) : tokens(tokens) {}
+    Parser(const vector<Token*>& tokens) : tokens(tokens) {}
     TokenType tokenType() {
-        return tokens.at(0).getTypeName();
+        return tokens.at(0)->getTypeName();
     }
     void advanceToken() {
         tokens.erase(tokens.begin());
@@ -27,7 +27,6 @@ public:
         cout << "error" << endl;
     }
     void match(TokenType t) {
-        cout << "match: " << t << endl;
         if (tokenType() == t) {
             advanceToken();
         } else {
@@ -74,7 +73,7 @@ public:
         return myDLProgram;
     }
     void addNewPred() {
-        Predicate currentPred(tokens.at(0).getData());
+        Predicate currentPred(tokens.at(0)->getData());
         currentPredicates.push_back(currentPred);
     }
     void addNewRule() {
@@ -86,7 +85,7 @@ public:
         currentPredicates.clear();
     }
     void addNewParam() {
-        Parameter newParam = tokens[0].getData();
+        Parameter newParam = tokens[0]->getData();
         currentPredicates.back().addParameter(newParam);
     }
 
@@ -113,6 +112,7 @@ public:
             addNewPred();
             match(ID);
             match(LEFT_PAREN);
+            addNewParam();
             match(STRING);
             stringList();
             match(RIGHT_PAREN);
@@ -207,6 +207,7 @@ public:
     void stringList() {
         if (tokenType() == COMMA) {
             match(COMMA);
+            addNewParam();
             match(STRING);
             stringList();
         } else {
