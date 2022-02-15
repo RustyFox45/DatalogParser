@@ -65,7 +65,5 @@ int main(int argc, char* argv[]) {
     in.close();
     out.close();
 
-    out << "Total Tokens = " << numTokens;
-
     return 0;
 }
