@@ -18,6 +18,7 @@ string myInput(ifstream &in) {
         returnString.append(line);
         i++;
     }
+    returnString.push_back('\n');
     return returnString;
 }
 
