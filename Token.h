@@ -85,7 +85,7 @@ public:
                 return "UNDEFINED";
             }
             case FILE_END: {
-                return "FILE_END";
+                return "EOF";
             }
             default: {
                 return "UNDEFINED";

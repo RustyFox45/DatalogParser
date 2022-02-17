@@ -53,13 +53,13 @@ public:
             mySchemesStream << "\n  " << mySchemes[i].toString();
         }
         for (long unsigned int i = 0; i < myFacts.size(); ++i) {
-            myFactsStream << "\n  " << myFacts[i].toString();
+            myFactsStream << "\n  " << myFacts[i].toString() << ".";
         }
         for (long unsigned int i = 0; i < myRules.size(); ++i) {
-            myRulesStream << "\n  " << myRules[i].toString();
+            myRulesStream << "\n  " << myRules[i].toString() << ".";
         }
         for (long unsigned int i = 0; i < myQueries.size(); ++i) {
-            myQueriesStream << "\n  " << myQueries[i].toString();
+            myQueriesStream << "\n  " << myQueries[i].toString() << "?";
         }
         set<string> domainSet;
         for (long unsigned int i = 0; i < myFacts.size(); ++i) {

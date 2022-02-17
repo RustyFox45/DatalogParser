@@ -25,11 +25,9 @@ int main(int argc, char* argv[]) {
 
     // Get file names
     string inputFileName = argv[1];
-    string outputFileName = argv[2];
 
     //
     ifstream in(inputFileName);
-    ofstream out(outputFileName);
 
     string inputString = myInput(in);
 
@@ -42,7 +40,9 @@ int main(int argc, char* argv[]) {
     do {
         t = s.scanToken();
         if (t!= nullptr) {
-            tokenVector.push_back(t);
+            if (t->getTypeName() != COMMENT) {
+                tokenVector.push_back(t);
+            }
             if (t->getTypeName() == FILE_END) {
                 numTokens++;
                 break;
@@ -57,10 +57,10 @@ int main(int argc, char* argv[]) {
     DatalogProgram datalogProgram;
     try {
         datalogProgram = parser.datalogProgram();
-        out << "Success!\n" << datalogProgram << endl;
+        cout << "Success!\n" << datalogProgram;
     }
     catch (const std::invalid_argument& e) {
-        out << parser.errorString;
+        cout  << parser.errorString << endl;
     }
 
     // Clean up memory
@@ -68,7 +68,6 @@ int main(int argc, char* argv[]) {
         delete t;
     }
     in.close();
-    out.close();
 
     return 0;
 }

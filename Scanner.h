@@ -21,8 +21,8 @@ public:
 
     Token* scanToken() {
         TokenType type;
-        int mySize;
-        char myChar;
+        int mySize = 0;
+        char myChar = 'a';
         string value = "";
 
         while (!input.empty() && isspace(input.at(0))) {
@@ -65,24 +65,37 @@ public:
                     break;
                 }
                 case ':': {
-                    if (!isspace(input.at(1))) {
-                        if (input[1] == '-') {
-                            type = COLON_DASH;
-                            mySize = 2;
-                            break;
-                        } else {
-                            type = UNDEFINED;
-                            int i = 1;
-                            while (!isspace(input[i])) {
-                                i++;
-                            }
-                            mySize = i;
-                            break;
-                        }
+
+                    if (input.at(1) == '-') {
+                        type = COLON_DASH;
+                        mySize = 2;
+                        break;
+                    } else {
+                        type = COLON;
+                        mySize = 1;
+                        break;
                     }
-                    type = COLON;
-                    mySize = 1;
-                    break;
+
+
+
+//                    if (!isspace(input.at(1))) {
+//                        if (input[1] == '-') {
+//                            type = COLON_DASH;
+//                            mySize = 2;
+//                            break;
+//                        } else {
+//                            type = UNDEFINED;
+//                            int i = 1;
+//                            while (!isspace(input[i])) {
+//                                i++;
+//                            }
+//                            mySize = i;
+//                            break;
+//                        }
+//                    }
+//                    type = COLON;
+//                    mySize = 1;
+//                    break;
                 }
                 case '*': {
                     type = MULTIPLY;
@@ -227,21 +240,21 @@ public:
 
     string commentToken(string myString, bool& setUndefined) {
         string returnString = "";
-        char currChar;
-        for (int i = 0; currChar != '\n'; i++) {
-            currChar = myString.at(i);
+        char currChar = myString.at(0);
+        for (int i = 1; currChar != '\n'; i++) {
             returnString.push_back(currChar);
             if (myString.empty()) {
                 setUndefined = true;
                 break;
             }
+            currChar = myString.at(i);
         }
         return returnString;
     }
 
     string stringToken(string myString, bool& setUndefined) {
         string returnString = "\'";
-        char currChar;
+        char currChar = 'a';
         for (int i = 1; currChar != '\''; i++) {
             currChar = myString.at(i);
             returnString.push_back(currChar);
