@@ -4,6 +4,7 @@
 #include "Token.h"
 #include "Scanner.h"
 #include "Parser.h"
+#include "Relation.h"
 
 using namespace std;
 
@@ -25,50 +26,78 @@ string myInput(ifstream &in) {
 int main(int argc, char* argv[]) {
 
     // Get file names
-    string inputFileName = argv[1];
+//    string inputFileName = argv[1];
+//
+//    //
+//    ifstream in(inputFileName);
+//
+//    string inputString = myInput(in);
+//
+//    Scanner s = Scanner(inputString);
+//    Token* t;
+//
+//    vector<Token*> tokenVector;
+//
+//    int numTokens = 0;
+//    do {
+//        t = s.scanToken();
+//        if (t!= nullptr) {
+//            if (t->getTypeName() != COMMENT) {
+//                tokenVector.push_back(t);
+//            }
+//            if (t->getTypeName() == FILE_END) {
+//                numTokens++;
+//                break;
+//            }
+//            numTokens++;
+//        } else {
+//            break;
+//        }
+//    } while (true);
+//
+//    Parser parser(tokenVector);
+//    DatalogProgram datalogProgram;
+//    try {
+//        datalogProgram = parser.datalogProgram();
+//        cout << "Success!\n" << datalogProgram;
+//    }
+//    catch (const std::invalid_argument& e) {
+//        cout  << parser.errorString << endl;
+//    }
+//
+//    // Clean up memory
+//    for(Token* t : tokenVector) {
+//        delete t;
+//    }
+//    in.close();
 
-    //
-    ifstream in(inputFileName);
 
-    string inputString = myInput(in);
+    vector<string> names = { "ID", "Name", "Major" };
 
-    Scanner s = Scanner(inputString);
-    Token* t;
+    Scheme scheme(names);
 
-    vector<Token*> tokenVector;
+    Relation relation("student", scheme);
 
-    int numTokens = 0;
-    do {
-        t = s.scanToken();
-        if (t!= nullptr) {
-            if (t->getTypeName() != COMMENT) {
-                tokenVector.push_back(t);
-            }
-            if (t->getTypeName() == FILE_END) {
-                numTokens++;
-                break;
-            }
-            numTokens++;
-        } else {
-            break;
-        }
-    } while (true);
+    vector<string> values[] = {
+            {"'42'", "'Ann'", "'CS'"},
+            {"'32'", "'Bob'", "'CS'"},
+            {"'64'", "'Ned'", "'EE'"},
+            {"'16'", "'Jim'", "'EE'"},
+    };
 
-    Parser parser(tokenVector);
-    DatalogProgram datalogProgram;
-    try {
-        datalogProgram = parser.datalogProgram();
-        cout << "Success!\n" << datalogProgram;
+    for (auto& value : values) {
+        Tuple tuple(value);
+        cout << tuple.toString(scheme) << endl;
+        relation.addTuple(tuple);
     }
-    catch (const std::invalid_argument& e) {
-        cout  << parser.errorString << endl;
-    }
 
-    // Clean up memory
-    for(Token* t : tokenVector) {
-        delete t;
-    }
-    in.close();
+    cout << "relation:" << endl;
+    cout << relation.toString();
+
+    Relation result = relation.select(2, "'CS'");
+
+    cout << "select Major='CS' result:" << endl;
+    cout << result.toString();
 
     return 0;
 }

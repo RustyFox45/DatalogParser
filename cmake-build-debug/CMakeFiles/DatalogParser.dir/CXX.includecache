@@ -32,6 +32,10 @@ DatalogProgram.h
 Parameter.h
 /Users/loganlawson/CLionProjects/BYU/CS236/DatalogParser/Parameter.h
 
+/Users/loganlawson/CLionProjects/BYU/CS236/DatalogParser/Relation.h
+Tuple.h
+/Users/loganlawson/CLionProjects/BYU/CS236/DatalogParser/Tuple.h
+
 /Users/loganlawson/CLionProjects/BYU/CS236/DatalogParser/Rule.h
 Predicate.h
 /Users/loganlawson/CLionProjects/BYU/CS236/DatalogParser/Predicate.h
@@ -44,11 +48,17 @@ cctype
 Token.h
 /Users/loganlawson/CLionProjects/BYU/CS236/DatalogParser/Token.h
 
+/Users/loganlawson/CLionProjects/BYU/CS236/DatalogParser/Scheme.h
+
 /Users/loganlawson/CLionProjects/BYU/CS236/DatalogParser/Token.h
 string
 -
 sstream
 -
+
+/Users/loganlawson/CLionProjects/BYU/CS236/DatalogParser/Tuple.h
+Scheme.h
+/Users/loganlawson/CLionProjects/BYU/CS236/DatalogParser/Scheme.h
 
 /Users/loganlawson/CLionProjects/BYU/CS236/DatalogParser/main.cpp
 iostream
@@ -63,4 +73,6 @@ Scanner.h
 /Users/loganlawson/CLionProjects/BYU/CS236/DatalogParser/Scanner.h
 Parser.h
 /Users/loganlawson/CLionProjects/BYU/CS236/DatalogParser/Parser.h
+Relation.h
+/Users/loganlawson/CLionProjects/BYU/CS236/DatalogParser/Relation.h
 
