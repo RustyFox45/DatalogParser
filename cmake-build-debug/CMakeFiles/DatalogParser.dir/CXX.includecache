@@ -6,6 +6,10 @@
 
 #IncludeRegexTransform: 
 
+/Users/loganlawson/CLionProjects/BYU/CS236/DatalogParser/Database.h
+Relation.h
+/Users/loganlawson/CLionProjects/BYU/CS236/DatalogParser/Relation.h
+
 /Users/loganlawson/CLionProjects/BYU/CS236/DatalogParser/DatalogProgram.h
 Rule.h
 /Users/loganlawson/CLionProjects/BYU/CS236/DatalogParser/Rule.h
@@ -73,6 +77,6 @@ Scanner.h
 /Users/loganlawson/CLionProjects/BYU/CS236/DatalogParser/Scanner.h
 Parser.h
 /Users/loganlawson/CLionProjects/BYU/CS236/DatalogParser/Parser.h
-Relation.h
-/Users/loganlawson/CLionProjects/BYU/CS236/DatalogParser/Relation.h
+Database.h
+/Users/loganlawson/CLionProjects/BYU/CS236/DatalogParser/Database.h
 

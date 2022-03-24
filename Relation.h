@@ -1,7 +1,3 @@
-//
-// Created by Logan Lawson on 3/7/22.
-//
-
 #ifndef DATALOGPARSER_RELATION_H
 #define DATALOGPARSER_RELATION_H
 
@@ -29,6 +25,18 @@ public:
         for (auto& tuple : tuples)
             if (tuple.at(index) == value)
                 result.addTuple(tuple);
+        return result;
+    }
+
+    Relation project(Scheme newScheme) const {
+        Relation result(name, newScheme);
+        // set result to relation of schema from maybe a vector of strings?
+        return result;
+    }
+
+    Relation rename(int index, const string& value) const {
+        Relation result(name, scheme);
+        // set Schemes 'names' array at index to new value
         return result;
     }
 

@@ -78,6 +78,9 @@
 				</MakeCommands>
 			</Target>
 		</Build>
+		<Unit filename="/Users/loganlawson/CLionProjects/BYU/CS236/DatalogParser/Database.h">
+			<Option target="DatalogParser"/>
+		</Unit>
 		<Unit filename="/Users/loganlawson/CLionProjects/BYU/CS236/DatalogParser/Parameter.h">
 			<Option target="DatalogParser"/>
 		</Unit>

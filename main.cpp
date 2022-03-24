@@ -4,9 +4,16 @@
 #include "Token.h"
 #include "Scanner.h"
 #include "Parser.h"
-#include "Relation.h"
+#include "Database.h"
 
 using namespace std;
+
+enum SectionName {
+    Schemes,
+    Facts,
+    Rules,
+    Queries
+};
 
 string myInput(ifstream &in) {
     string returnString = "";
@@ -21,6 +28,21 @@ string myInput(ifstream &in) {
     }
     returnString.push_back('\n');
     return returnString;
+}
+
+string getKeywords(string keywordInput) {
+    // QUERIES, SCHEMES, FACTS, RULES
+    string result = "";
+    if (keywordInput.length() >= 7 && keywordInput.substr(0, 7) == "Queries") {
+        result = "Queries";
+    } else if (keywordInput.length() >= 7 && keywordInput.substr(0, 7) == "Schemes") {
+        result = "Schemes";
+    } else if (keywordInput.length() >= 5 && keywordInput.substr(0, 5) == "Facts") {
+        result = "Facts";
+    } else if (keywordInput.length() >= 5 && keywordInput.substr(0, 5) == "Rules") {
+        result = "Rules";
+    }
+    return result;
 }
 
 int main(int argc, char* argv[]) {
@@ -71,33 +93,91 @@ int main(int argc, char* argv[]) {
 //    }
 //    in.close();
 
+//    Database database;
+//
+//    vector<string> names = { "ID", "Name", "Major" };
+//
+//    Scheme scheme(names);
+//
+//    Relation relation("student", scheme);
+//
+//    vector<string> values[] = {
+//            {"'42'", "'Ann'", "'CS'"},
+//            {"'32'", "'Bob'", "'CS'"},
+//            {"'64'", "'Ned'", "'EE'"},
+//            {"'16'", "'Jim'", "'EE'"},
+//    };
+//
+//    for (auto& value : values) {
+//        Tuple tuple(value);
+//        cout << tuple.toString(scheme) << endl;
+//        relation.addTuple(tuple);
+//    }
+//
+//    database.addRelation(relation);
+//
+//    cout << "relation:" << endl;
+//    cout << relation.toString();
+//
+//    Relation result = relation.select(2, "'CS'");
+//
+//    cout << "select Major='CS' result:" << endl;
+//    cout << result.toString();
 
-    vector<string> names = { "ID", "Name", "Major" };
 
-    Scheme scheme(names);
+    // Get file names
+    string inputFileName = argv[1];
 
-    Relation relation("student", scheme);
+    //
+    ifstream in(inputFileName);
 
-    vector<string> values[] = {
-            {"'42'", "'Ann'", "'CS'"},
-            {"'32'", "'Bob'", "'CS'"},
-            {"'64'", "'Ned'", "'EE'"},
-            {"'16'", "'Jim'", "'EE'"},
-    };
+    //string inputString = myInput(in);
 
-    for (auto& value : values) {
-        Tuple tuple(value);
-        cout << tuple.toString(scheme) << endl;
-        relation.addTuple(tuple);
+    Database database;
+
+    SectionName sectionName;
+
+    string line, section;
+    while (getline(in, line)) {
+        try {
+
+            // Step through input file till I hit "Schemes:"
+            if (line.size() == 0 || line.substr(0,1) == "#") continue;
+            if (getKeywords(line) == "Schemes") {
+                sectionName = Schemes;
+            } else if (getKeywords(line) == "Facts") {
+                sectionName = Facts;
+            } else if (getKeywords(line) == "Rules") {
+                sectionName = Rules;
+            } else if (getKeywords(line) == "Queries") {
+                sectionName = Queries;
+            } else {
+                switch (sectionName) {
+                    case Schemes:
+                        database.addRelation(line);
+                        break;
+                    case Facts:
+
+                        break;
+                    case Rules:
+
+                        break;
+                    case Queries:
+
+                        break;
+                }
+            }
+        }
+        catch (const std::invalid_argument& e) {
+
+        }
     }
 
-    cout << "relation:" << endl;
-    cout << relation.toString();
+    // Print out all the stuff
 
-    Relation result = relation.select(2, "'CS'");
+    // Clean up memory
 
-    cout << "select Major='CS' result:" << endl;
-    cout << result.toString();
+    in.close();
 
     return 0;
 }
