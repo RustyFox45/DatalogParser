@@ -157,13 +157,13 @@ int main(int argc, char* argv[]) {
                         database.addRelation(line);
                         break;
                     case Facts:
-
+                        database.addTupleToRelation(line);
                         break;
                     case Rules:
-
+                        // database.checkAndEvaluateRule(line);
                         break;
                     case Queries:
-
+                        database.evaluateQuery(line);
                         break;
                 }
             }

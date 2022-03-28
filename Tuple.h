@@ -1,7 +1,3 @@
-//
-// Created by Logan Lawson on 3/7/22.
-//
-
 #ifndef DATALOGPARSER_TUPLE_H
 #define DATALOGPARSER_TUPLE_H
 

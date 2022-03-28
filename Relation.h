@@ -20,6 +20,14 @@ public:
         tuples.insert(tuple);
     }
 
+    string getName() {
+        return name;
+    }
+
+    int getTuples() {
+        return tuples.size();
+    }
+
     Relation select(int index, const string& value) const {
         Relation result(name, scheme);
         for (auto& tuple : tuples)
