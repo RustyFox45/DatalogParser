@@ -5,8 +5,7 @@
 
 class Relation {
 
-private:
-
+public:
     string name;
     Scheme scheme;
     set<Tuple> tuples;

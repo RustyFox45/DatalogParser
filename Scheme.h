@@ -4,6 +4,7 @@
 
 #ifndef DATALOGPARSER_SCHEME_H
 #define DATALOGPARSER_SCHEME_H
+#include <vector>
 
 class Scheme : public vector<string> {
 
