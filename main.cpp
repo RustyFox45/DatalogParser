@@ -135,95 +135,126 @@ int main(int argc, char* argv[]) {
 //    cout << result.toString();
 
 
-    // Get file names
-    string inputFileName = argv[1];
-
-    //
-    ifstream in(inputFileName);
+//    // Get file names
+//    string inputFileName = argv[1];
+//
+//    ifstream in(inputFileName);
 
     //string inputString = myInput(in);
 
-    Database database;
+//    Database database;
+//
+//    SectionName sectionName;
+//
+//    string line, section;
+//    while (getline(in, line)) {
+//        try {
+//
+//            // Step through input file till I hit "Schemes:"
+//            if (line.size() == 0 || line.substr(0,1) == "#") continue;
+//            if (getKeywords(line) == "Schemes") {
+//                sectionName = Schemes;
+//            } else if (getKeywords(line) == "Facts") {
+//                sectionName = Facts;
+//            } else if (getKeywords(line) == "Rules") {
+//                sectionName = Rules;
+//            } else if (getKeywords(line) == "Queries") {
+//                sectionName = Queries;
+//            } else {
+//                switch (sectionName) {
+//                    case Schemes:
+//                        database.addRelation(line);
+//                        break;
+//                    case Facts:
+//                        database.addTupleToRelation(line);
+//                        break;
+//                    case Rules:
+//                        // database.checkAndEvaluateRule(line);
+//                        break;
+//                    case Queries:
+//                        Relation subRelation = database.evaluateQuery(line);
+//                        vector<string> parameters = database.getParameters(line);
+//                        line = fixQueryString(line);
+//                        cout << line;
+//                        if (subRelation.tuples.size()) {
+//                           cout << " Yes(" << subRelation.tuples.size() << ")" << endl;
+//                        } else {
+//                           cout << " No" << endl;
+//                        }
+//                        //for(int i = 0; i < subRelation.tuples.size(); i++) {
+//                        for(auto tuple : subRelation.tuples) {
+//                           set<string> printedParams;
+//                           bool firstPrintedParam = true;
+//                           for (long unsigned int j = 0; j < subRelation.scheme.size(); ++j) {
+//                              if (!database.paramIsConstant(parameters[j])) {
+//                                 if (printedParams.find(parameters[j]) != printedParams.end()) {
+//                                 }
+//                                 else {
+//                                    printedParams.insert(parameters[j]);
+//                                    if (!firstPrintedParam) {
+//                                       cout << ", ";
+//                                    } else {
+//                                       cout << "  ";
+//                                       firstPrintedParam = false;
+//                                    }
+//                                    cout << parameters[j] << "=" << tuple[j];
+//                                 }
+//                              }
+//                           }
+//                           if (!firstPrintedParam) {
+//                              cout << endl;
+//                           }
+//                        }
+//                        // database.projectQueries(tuples);
+//                        break;
+//                }
+//            }
+//        }
+//        catch (const std::invalid_argument& e) {
+//
+//        }
+//        catch (...) {
+//
+//        }
+//    }
+//
+//    // Print out all the stuff
+//
+//    // Clean up memory
+//
+//    in.close();
 
-    SectionName sectionName;
 
-    string line, section;
-    while (getline(in, line)) {
-        try {
+   // Get file names
+   string inputFileName = argv[1];
 
-            // Step through input file till I hit "Schemes:"
-            if (line.size() == 0 || line.substr(0,1) == "#") continue;
-            if (getKeywords(line) == "Schemes") {
-                sectionName = Schemes;
-            } else if (getKeywords(line) == "Facts") {
-                sectionName = Facts;
-            } else if (getKeywords(line) == "Rules") {
-                sectionName = Rules;
-            } else if (getKeywords(line) == "Queries") {
-                sectionName = Queries;
-            } else {
-                switch (sectionName) {
-                    case Schemes:
-                        database.addRelation(line);
-                        break;
-                    case Facts:
-                        database.addTupleToRelation(line);
-                        break;
-                    case Rules:
-                        // database.checkAndEvaluateRule(line);
-                        break;
-                    case Queries:
-                        Relation subRelation = database.evaluateQuery(line);
-                        vector<string> parameters = database.getParameters(line);
-                        line = fixQueryString(line);
-                        cout << line;
-                        if (subRelation.tuples.size()) {
-                           cout << " Yes(" << subRelation.tuples.size() << ")" << endl;
-                        } else {
-                           cout << " No" << endl;
-                        }
-                        //for(int i = 0; i < subRelation.tuples.size(); i++) {
-                        for(auto tuple : subRelation.tuples) {
-                           set<string> printedParams;
-                           bool firstPrintedParam = true;
-                           for (long unsigned int j = 0; j < subRelation.scheme.size(); ++j) {
-                              if (!database.paramIsConstant(parameters[j])) {
-                                 if (printedParams.find(parameters[j]) != printedParams.end()) {
-                                 }
-                                 else {
-                                    printedParams.insert(parameters[j]);
-                                    if (!firstPrintedParam) {
-                                       cout << ", ";
-                                    } else {
-                                       cout << "  ";
-                                       firstPrintedParam = false;
-                                    }
-                                    cout << parameters[j] << "=" << tuple[j];
-                                 }
-                              }
-                           }
-                           if (!firstPrintedParam) {
-                              cout << endl;
-                           }
-                        }
-                        // database.projectQueries(tuples);
-                        break;
-                }
-            }
-        }
-        catch (const std::invalid_argument& e) {
+   ifstream in(inputFileName);
 
-        }
-        catch (...) {
+   Relation studentRelation("students", Scheme( {"ID", "Name", "Major"} ));
 
-        }
-    }
+   vector<string> studentValues[] = {
+         {"'42'", "'Ann'", "'CS'"},
+         {"'64'", "'Ned'", "'EE'"},
+   };
 
-    // Print out all the stuff
+   for (auto& value : studentValues)
+      studentRelation.addTuple(Tuple(value));
 
-    // Clean up memory
+   //studentRelation.join(studentRelation);
 
-    in.close();
+   Relation courseRelation("courses", Scheme( {"ID", "Course"} ));
+
+   vector<string> courseValues[] = {
+         {"'42'", "'CS 100'"},
+         {"'32'", "'CS 232'"},
+   };
+
+   for (auto& value : courseValues)
+      courseRelation.addTuple(Tuple(value));
+
+   studentRelation.join(courseRelation);
+
+   in.close();
 
     return 0;
 }

@@ -25,10 +25,6 @@ public:
         return name;
     }
 
-    int getTuples() {
-        return tuples.size();
-    }
-
     Relation select(int index, const string& value) const {
         Relation result(name, scheme);
         for (auto& tuple : tuples)
@@ -36,6 +32,47 @@ public:
                 result.addTuple(tuple);
         return result;
     }
+
+   static bool joinable(const Scheme& leftScheme, const Scheme& rightScheme,
+                        const Tuple& leftTuple, const Tuple& rightTuple) {
+       bool returnBool = false;
+
+      for (unsigned leftIndex = 0; leftIndex < leftScheme.size(); leftIndex++) {
+         const string& leftName = leftScheme.at(leftIndex);
+         const string& leftValue = leftTuple.at(leftIndex);
+         cout << "left name: " << leftName << " value: " << leftValue << endl;
+         for (unsigned rightIndex = 0; rightIndex < rightScheme.size(); rightIndex++) {
+            const string& rightName = rightScheme.at(rightIndex);
+            const string& rightValue = rightTuple.at(rightIndex);
+            cout << "right name: " << rightName << " value: " << rightValue << endl;
+            if (leftScheme.at(leftIndex) == rightScheme.at(rightIndex)) {
+               //check for equal values
+               if (leftTuple.at(leftIndex) == rightTuple.at(rightIndex)) {
+                  returnBool = true;
+               }
+            }
+         }
+      }
+
+      return returnBool;
+   }
+
+   Relation join(const Relation& r) {
+      Relation newRelation(name, scheme);
+      const Scheme& leftScheme = scheme;
+      const Scheme& rightScheme = r.scheme;
+      for (const Tuple& leftTuple : tuples) {
+         cout << "left tuple: " << leftTuple.toString(leftScheme) << endl;
+         for (const Tuple& rightTuple : r.tuples) {
+            cout << "right tuple: " << rightTuple.toString(rightScheme) << endl;
+         }
+      }
+
+
+
+
+      return newRelation;
+   }
 
     string toString() const {
         stringstream out;
