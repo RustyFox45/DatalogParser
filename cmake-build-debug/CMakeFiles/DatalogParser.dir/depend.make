@@ -6,6 +6,7 @@ CMakeFiles/DatalogParser.dir/main.cpp.o: ../DatalogProgram.h
 CMakeFiles/DatalogParser.dir/main.cpp.o: ../Parameter.h
 CMakeFiles/DatalogParser.dir/main.cpp.o: ../Parser.h
 CMakeFiles/DatalogParser.dir/main.cpp.o: ../Predicate.h
+CMakeFiles/DatalogParser.dir/main.cpp.o: ../Query.h
 CMakeFiles/DatalogParser.dir/main.cpp.o: ../Relation.h
 CMakeFiles/DatalogParser.dir/main.cpp.o: ../Rule.h
 CMakeFiles/DatalogParser.dir/main.cpp.o: ../Scanner.h

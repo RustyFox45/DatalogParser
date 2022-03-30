@@ -36,9 +36,15 @@ DatalogProgram.h
 Parameter.h
 /Users/loganlawson/CLionProjects/BYU/CS236/DatalogParser/Parameter.h
 
+/Users/loganlawson/CLionProjects/BYU/CS236/DatalogParser/Query.h
+Tuple.h
+/Users/loganlawson/CLionProjects/BYU/CS236/DatalogParser/Tuple.h
+
 /Users/loganlawson/CLionProjects/BYU/CS236/DatalogParser/Relation.h
 Tuple.h
 /Users/loganlawson/CLionProjects/BYU/CS236/DatalogParser/Tuple.h
+Query.h
+/Users/loganlawson/CLionProjects/BYU/CS236/DatalogParser/Query.h
 
 /Users/loganlawson/CLionProjects/BYU/CS236/DatalogParser/Rule.h
 Predicate.h
@@ -53,6 +59,8 @@ Token.h
 /Users/loganlawson/CLionProjects/BYU/CS236/DatalogParser/Token.h
 
 /Users/loganlawson/CLionProjects/BYU/CS236/DatalogParser/Scheme.h
+vector
+-
 
 /Users/loganlawson/CLionProjects/BYU/CS236/DatalogParser/Token.h
 string
