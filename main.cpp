@@ -15,6 +15,16 @@ enum SectionName {
     Queries
 };
 
+string& leftTrim(string& str, string chars);
+
+string& rightTrim(string& str, string chars);
+
+string fixQueryString(string stringToFix);
+
+string getSubstringToChar(string const &s, char c);
+
+string getSubstringAfterChar(string const &s, char c);
+
 string myInput(ifstream &in) {
     string returnString = "";
     string line = "";
@@ -163,12 +173,48 @@ int main(int argc, char* argv[]) {
                         // database.checkAndEvaluateRule(line);
                         break;
                     case Queries:
-                        database.evaluateQuery(line);
+                        Relation subRelation = database.evaluateQuery(line);
+                        vector<string> parameters = database.getParameters(line);
+                        line = fixQueryString(line);
+                        cout << line;
+                        if (subRelation.tuples.size()) {
+                           cout << " Yes(" << subRelation.tuples.size() << ")" << endl;
+                        } else {
+                           cout << " No" << endl;
+                        }
+                        //for(int i = 0; i < subRelation.tuples.size(); i++) {
+                        for(auto tuple : subRelation.tuples) {
+                           set<string> printedParams;
+                           bool firstPrintedParam = true;
+                           for (long unsigned int j = 0; j < subRelation.scheme.size(); ++j) {
+                              if (!database.paramIsConstant(parameters[j])) {
+                                 if (printedParams.find(parameters[j]) != printedParams.end()) {
+                                 }
+                                 else {
+                                    printedParams.insert(parameters[j]);
+                                    if (!firstPrintedParam) {
+                                       cout << ", ";
+                                    } else {
+                                       cout << "  ";
+                                       firstPrintedParam = false;
+                                    }
+                                    cout << parameters[j] << "=" << tuple[j];
+                                 }
+                              }
+                           }
+                           if (!firstPrintedParam) {
+                              cout << endl;
+                           }
+                        }
+                        // database.projectQueries(tuples);
                         break;
                 }
             }
         }
         catch (const std::invalid_argument& e) {
+
+        }
+        catch (...) {
 
         }
     }
@@ -180,4 +226,45 @@ int main(int argc, char* argv[]) {
     in.close();
 
     return 0;
+}
+
+string& leftTrim(string& str, string chars)
+{
+   str.erase(0, str.find_first_not_of(chars));
+   return str;
+}
+
+string& rightTrim(string& str, string chars)
+{
+   str.erase(str.find_last_not_of(chars) + 1);
+   return str;
+}
+
+string fixQueryString(string stringToFix) {
+   string newString = stringToFix;
+   newString = leftTrim(newString, " ");
+   newString = rightTrim(newString, " ");
+   string name = getSubstringToChar(newString, '(');
+   leftTrim(name, " ");
+   rightTrim(name, " ");
+   string balanceOfQueryString = getSubstringAfterChar(newString, '(');
+   return name + balanceOfQueryString;
+}
+
+string getSubstringToChar(string const &s, char c) {
+   string::size_type pos = s.find(c);
+   if (pos != string::npos) {
+      return s.substr(0, pos);
+   } else {
+      return s;
+   }
+}
+
+string getSubstringAfterChar(string const &s, char c) {
+   string::size_type pos = s.find(c);
+   if (pos != string::npos) {
+      return s.substr(pos);
+   } else {
+      return s;
+   }
 }

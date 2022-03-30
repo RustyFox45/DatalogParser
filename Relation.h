@@ -2,12 +2,14 @@
 #define DATALOGPARSER_RELATION_H
 
 #include "Tuple.h"
+#include "Query.h"
 
 class Relation {
 
 public:
     string name;
     Scheme scheme;
+    vector<Query> queries;
     set<Tuple> tuples;
 
 public:
@@ -32,18 +34,6 @@ public:
         for (auto& tuple : tuples)
             if (tuple.at(index) == value)
                 result.addTuple(tuple);
-        return result;
-    }
-
-    Relation project(Scheme newScheme) const {
-        Relation result(name, newScheme);
-        // set result to relation of schema from maybe a vector of strings?
-        return result;
-    }
-
-    Relation rename(int index, const string& value) const {
-        Relation result(name, scheme);
-        // set Schemes 'names' array at index to new value
         return result;
     }
 
