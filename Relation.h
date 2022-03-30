@@ -35,7 +35,7 @@ public:
 
    static bool joinable(const Scheme& leftScheme, const Scheme& rightScheme,
                         const Tuple& leftTuple, const Tuple& rightTuple) {
-       bool returnBool = false;
+       bool joinableBool = false;
 
       for (unsigned leftIndex = 0; leftIndex < leftScheme.size(); leftIndex++) {
          const string& leftName = leftScheme.at(leftIndex);
@@ -48,13 +48,13 @@ public:
             if (leftScheme.at(leftIndex) == rightScheme.at(rightIndex)) {
                //check for equal values
                if (leftTuple.at(leftIndex) == rightTuple.at(rightIndex)) {
-                  returnBool = true;
+                  joinableBool = true;
                }
             }
          }
       }
 
-      return returnBool;
+      return joinableBool;
    }
 
    Relation join(const Relation& r) {
