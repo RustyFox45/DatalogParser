@@ -1,7 +1,3 @@
-//
-// Created by Logan Lawson on 2/10/22.
-//
-
 #ifndef LAB2_DATALOGPROGRAM_H
 #define LAB2_DATALOGPROGRAM_H
 
