@@ -173,9 +173,10 @@ int main(int argc, char *argv[]) {
                   break;
                case Rules: {
                      Rule rule = database.parseRule(line);
+                     StringUtil::leftTrim(line);
+                     cout << line << endl;
                      for (auto tuple: rule.relation.tuples) {
                         set<string> printedParams;
-                        bool firstPrintedParam = true;
                         cout << "  ";
                         for (long unsigned int i = 0; i < rule.relation.scheme.size(); ++i) {
                            if(i != 0) {

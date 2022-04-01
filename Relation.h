@@ -41,11 +41,9 @@ public:
       for (unsigned leftIndex = 0; leftIndex < leftScheme.size(); leftIndex++) {
          const string &leftName = leftScheme[leftIndex];
          const string &leftValue = leftTuple[leftIndex];
-         cout << "left name: " << leftName << " value: " << leftValue << endl;
          for (unsigned rightIndex = 0; rightIndex < rightScheme.size(); rightIndex++) {
             const string &rightName = rightScheme[rightIndex];
             const string &rightValue = rightTuple[rightIndex];
-            cout << "right name: " << rightName << " value: " << rightValue << endl;
             if (leftScheme[leftIndex] == rightScheme[rightIndex]) {
                //check for equal values
                if (leftTuple[leftIndex] == rightTuple[rightIndex]) {
@@ -61,17 +59,14 @@ public:
    Relation join(const Relation &r) {
       Relation joinedRelation;
       joinedRelation.scheme = joinSchemes(r.scheme);
-      cout << "Joining " << name << " with " << r.name << endl;
       for (auto lTuple: tuples) {
          for (auto rTuple: r.tuples) {
-            cout << "Left Tuple: " << lTuple.toString(scheme) << "    Right Tuple: " << rTuple.toString(r.scheme) << endl;
             for (int lIndex = 0; lIndex < scheme.size(); lIndex++) {
                for (int rIndex = 0; rIndex < r.scheme.size(); rIndex++) {
                   if (scheme[lIndex] == r.scheme[rIndex]) {
                      // matching columns
                      if (lTuple[lIndex] == rTuple[rIndex]) {
                         // Matching value in tuple, so join the tuples
-                        cout << "     Joinable Tuples" << endl;
                         // Tuple joinedTuple;
                         Tuple combinedTuple = joinTuples(scheme, lTuple, r.scheme, rTuple, joinedRelation.scheme);
                         joinedRelation.addTuple(combinedTuple);

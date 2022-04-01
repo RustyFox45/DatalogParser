@@ -9,9 +9,7 @@
 class Database {
 
 private:
-
    vector<Relation> relations;
-   vector<Rule> rules;
 
 public:
 
@@ -55,8 +53,6 @@ public:
          temp = StringUtil::getSubstringAfterChar(temp, ',');
       }
       evaluateRule(newRule);
-      rules.push_back(newRule);
-      cout << newRule << endl;
       return newRule;
    }
 
@@ -79,7 +75,6 @@ public:
                   if (joinable) {
                      joinableTupleFound = true;
                   }
-                  cout << joinable << endl;
                }
             }
             if (!joinableTupleFound) {
@@ -92,30 +87,22 @@ public:
       if (ruleRelations.size() > 1) {
          if (relationsJoinable) {
             // Do merge
-            cout << endl << "Perform Merge:" << endl;
             for (int i = 1; i < ruleRelations.size(); i++) {
                Relation lRelation = ruleRelations[i - 1];
                Relation rRelation = ruleRelations[i];
                joinedRelation = lRelation.join(rRelation);
-               cout << "Merged" << endl;
             }
 
          } else {
-            cout << "No joinable tuples" << endl;
          }
       } else {
          // No merge required because we only have 1 relation
-         cout << "No merge required because we only have 1 relation." << endl;
          joinedRelation = ruleRelations[0];
       }
 
       // We now have a joined relation, so we need to create a new relation based on the rule head
       Relation projectedRelation = joinedRelation.projectRelation(rule.headPredicate);
       rule.relation = projectedRelation;
-
-      // TODO
-
-      cout << "end of evaluateRule" << endl;
    }
 
    string getNextPredicateString(string &line) {

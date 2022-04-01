@@ -23,5 +23,6 @@ Facts:
 Rules:
 
   s3(a) :- s1(a,b), s2(b,c).
+  s3(a) :- s1(a,b).
 
 Queries:
