@@ -90,9 +90,6 @@
 		<Unit filename="/Users/loganlawson/CLionProjects/BYU/CS236/DatalogParser/Predicate.h">
 			<Option target="DatalogParser"/>
 		</Unit>
-		<Unit filename="/Users/loganlawson/CLionProjects/BYU/CS236/DatalogParser/Query.h">
-			<Option target="DatalogParser"/>
-		</Unit>
 		<Unit filename="/Users/loganlawson/CLionProjects/BYU/CS236/DatalogParser/Relation.h">
 			<Option target="DatalogParser"/>
 		</Unit>
@@ -105,10 +102,16 @@
 		<Unit filename="/Users/loganlawson/CLionProjects/BYU/CS236/DatalogParser/Scheme.h">
 			<Option target="DatalogParser"/>
 		</Unit>
+		<Unit filename="/Users/loganlawson/CLionProjects/BYU/CS236/DatalogParser/StringUtil.h">
+			<Option target="DatalogParser"/>
+		</Unit>
 		<Unit filename="/Users/loganlawson/CLionProjects/BYU/CS236/DatalogParser/Token.h">
 			<Option target="DatalogParser"/>
 		</Unit>
 		<Unit filename="/Users/loganlawson/CLionProjects/BYU/CS236/DatalogParser/Tuple.h">
+			<Option target="DatalogParser"/>
+		</Unit>
+		<Unit filename="/Users/loganlawson/CLionProjects/BYU/CS236/DatalogParser/Utils.h">
 			<Option target="DatalogParser"/>
 		</Unit>
 		<Unit filename="/Users/loganlawson/CLionProjects/BYU/CS236/DatalogParser/main.cpp">

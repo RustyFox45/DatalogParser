@@ -7,11 +7,12 @@ CMakeFiles/DatalogParser.dir/main.cpp.o
  /Users/loganlawson/CLionProjects/BYU/CS236/DatalogParser/Parameter.h
  /Users/loganlawson/CLionProjects/BYU/CS236/DatalogParser/Parser.h
  /Users/loganlawson/CLionProjects/BYU/CS236/DatalogParser/Predicate.h
- /Users/loganlawson/CLionProjects/BYU/CS236/DatalogParser/Query.h
  /Users/loganlawson/CLionProjects/BYU/CS236/DatalogParser/Relation.h
  /Users/loganlawson/CLionProjects/BYU/CS236/DatalogParser/Rule.h
  /Users/loganlawson/CLionProjects/BYU/CS236/DatalogParser/Scanner.h
  /Users/loganlawson/CLionProjects/BYU/CS236/DatalogParser/Scheme.h
+ /Users/loganlawson/CLionProjects/BYU/CS236/DatalogParser/StringUtil.h
  /Users/loganlawson/CLionProjects/BYU/CS236/DatalogParser/Token.h
  /Users/loganlawson/CLionProjects/BYU/CS236/DatalogParser/Tuple.h
+ /Users/loganlawson/CLionProjects/BYU/CS236/DatalogParser/Utils.h
  /Users/loganlawson/CLionProjects/BYU/CS236/DatalogParser/main.cpp

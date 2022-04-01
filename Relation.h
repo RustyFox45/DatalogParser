@@ -2,17 +2,17 @@
 #define DATALOGPARSER_RELATION_H
 
 #include "Tuple.h"
-#include "Query.h"
 
 class Relation {
 
 public:
     string name;
     Scheme scheme;
-    vector<Query> queries;
     set<Tuple> tuples;
 
 public:
+
+
 
     Relation(const string& name, const Scheme& scheme)
             : name(name), scheme(scheme) { }
@@ -67,10 +67,6 @@ public:
             cout << "right tuple: " << rightTuple.toString(rightScheme) << endl;
          }
       }
-
-
-
-
       return newRelation;
    }
 
