@@ -92,10 +92,14 @@
 		<Unit filename="/Users/loganlawson/CLionProjects/BYU/CS236/DatalogParser/Predicate.h">
 			<Option target="DatalogParser"/>
 		</Unit>
+<<<<<<< HEAD
 		<Unit filename="/Users/loganlawson/CLionProjects/BYU/CS236/DatalogParser/Query.h">
 			<Option target="DatalogParser"/>
 		</Unit>
 		<Unit filename="/Users/loganlawson/CLionProjects/BYU/CS236/DatalogParser/Relation.h">
+=======
+		<Unit filename="/Users/toddlawson/My Drive/Personal/Logan/CS236/DatalogParser/Relation.h">
+>>>>>>> 874be4879ba0836e29998d046a34dfd87f25bc2d
 			<Option target="DatalogParser"/>
 		</Unit>
 		<Unit filename="/Users/loganlawson/CLionProjects/BYU/CS236/DatalogParser/Rule.h">
@@ -107,13 +111,27 @@
 		<Unit filename="/Users/loganlawson/CLionProjects/BYU/CS236/DatalogParser/Scheme.h">
 			<Option target="DatalogParser"/>
 		</Unit>
+<<<<<<< HEAD
 		<Unit filename="/Users/loganlawson/CLionProjects/BYU/CS236/DatalogParser/StringUtil.h">
+=======
+		<Unit filename="/Users/toddlawson/My Drive/Personal/Logan/CS236/DatalogParser/StringUtil.h">
+			<Option target="DatalogParser"/>
+		</Unit>
+		<Unit filename="/Users/toddlawson/My Drive/Personal/Logan/CS236/DatalogParser/Token.h">
+>>>>>>> 874be4879ba0836e29998d046a34dfd87f25bc2d
 			<Option target="DatalogParser"/>
 		</Unit>
 		<Unit filename="/Users/loganlawson/CLionProjects/BYU/CS236/DatalogParser/Token.h">
 			<Option target="DatalogParser"/>
 		</Unit>
+<<<<<<< HEAD
 		<Unit filename="/Users/loganlawson/CLionProjects/BYU/CS236/DatalogParser/Tuple.h">
+=======
+		<Unit filename="/Users/toddlawson/My Drive/Personal/Logan/CS236/DatalogParser/Utils.h">
+			<Option target="DatalogParser"/>
+		</Unit>
+		<Unit filename="/Users/toddlawson/My Drive/Personal/Logan/CS236/DatalogParser/main.cpp">
+>>>>>>> 874be4879ba0836e29998d046a34dfd87f25bc2d
 			<Option target="DatalogParser"/>
 		</Unit>
 		<Unit filename="/Users/loganlawson/CLionProjects/BYU/CS236/DatalogParser/Utils.h">
