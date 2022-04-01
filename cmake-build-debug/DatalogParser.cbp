@@ -8,133 +8,121 @@
 		<Option virtualFolders="CMake Files\;"/>
 		<Build>
 			<Target title="all">
-				<Option working_dir="/Users/toddlawson/My Drive/Personal/Logan/CS236/DatalogParser/cmake-build-debug"/>
+				<Option working_dir="/Users/loganlawson/CLionProjects/BYU/CS236/DatalogParser/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j10 -f &quot;/Users/toddlawson/My\ Drive/Personal/Logan/CS236/DatalogParser/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
-					<CompileFile command="/usr/bin/make -j10 -f &quot;/Users/toddlawson/My\ Drive/Personal/Logan/CS236/DatalogParser/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j10 -f &quot;/Users/toddlawson/My\ Drive/Personal/Logan/CS236/DatalogParser/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j10 -f &quot;/Users/toddlawson/My\ Drive/Personal/Logan/CS236/DatalogParser/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j16 -f &quot;/Users/loganlawson/CLionProjects/BYU/CS236/DatalogParser/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -j16 -f &quot;/Users/loganlawson/CLionProjects/BYU/CS236/DatalogParser/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j16 -f &quot;/Users/loganlawson/CLionProjects/BYU/CS236/DatalogParser/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j16 -f &quot;/Users/loganlawson/CLionProjects/BYU/CS236/DatalogParser/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="rebuild_cache">
-				<Option working_dir="/Users/toddlawson/My Drive/Personal/Logan/CS236/DatalogParser/cmake-build-debug"/>
+				<Option working_dir="/Users/loganlawson/CLionProjects/BYU/CS236/DatalogParser/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j10 -f &quot;/Users/toddlawson/My\ Drive/Personal/Logan/CS236/DatalogParser/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
-					<CompileFile command="/usr/bin/make -j10 -f &quot;/Users/toddlawson/My\ Drive/Personal/Logan/CS236/DatalogParser/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j10 -f &quot;/Users/toddlawson/My\ Drive/Personal/Logan/CS236/DatalogParser/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j10 -f &quot;/Users/toddlawson/My\ Drive/Personal/Logan/CS236/DatalogParser/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j16 -f &quot;/Users/loganlawson/CLionProjects/BYU/CS236/DatalogParser/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -j16 -f &quot;/Users/loganlawson/CLionProjects/BYU/CS236/DatalogParser/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j16 -f &quot;/Users/loganlawson/CLionProjects/BYU/CS236/DatalogParser/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j16 -f &quot;/Users/loganlawson/CLionProjects/BYU/CS236/DatalogParser/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="edit_cache">
-				<Option working_dir="/Users/toddlawson/My Drive/Personal/Logan/CS236/DatalogParser/cmake-build-debug"/>
+				<Option working_dir="/Users/loganlawson/CLionProjects/BYU/CS236/DatalogParser/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j10 -f &quot;/Users/toddlawson/My\ Drive/Personal/Logan/CS236/DatalogParser/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
-					<CompileFile command="/usr/bin/make -j10 -f &quot;/Users/toddlawson/My\ Drive/Personal/Logan/CS236/DatalogParser/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j10 -f &quot;/Users/toddlawson/My\ Drive/Personal/Logan/CS236/DatalogParser/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j10 -f &quot;/Users/toddlawson/My\ Drive/Personal/Logan/CS236/DatalogParser/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j16 -f &quot;/Users/loganlawson/CLionProjects/BYU/CS236/DatalogParser/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -j16 -f &quot;/Users/loganlawson/CLionProjects/BYU/CS236/DatalogParser/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j16 -f &quot;/Users/loganlawson/CLionProjects/BYU/CS236/DatalogParser/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j16 -f &quot;/Users/loganlawson/CLionProjects/BYU/CS236/DatalogParser/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="DatalogParser">
-				<Option output="/Users/toddlawson/My Drive/Personal/Logan/CS236/DatalogParser/cmake-build-debug/DatalogParser" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/Users/toddlawson/My Drive/Personal/Logan/CS236/DatalogParser/cmake-build-debug"/>
+				<Option output="/Users/loganlawson/CLionProjects/BYU/CS236/DatalogParser/cmake-build-debug/DatalogParser" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/loganlawson/CLionProjects/BYU/CS236/DatalogParser/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
 				<Compiler>
-					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/bin/../include/c++/v1"/>
 					<Add directory="/usr/local/include"/>
-					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/13.0.0/include"/>
-					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/lib/clang/13.1.6/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/include"/>
 					<Add directory="/System/Library/Frameworks"/>
 					<Add directory="/Library/Frameworks"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j10 -f &quot;/Users/toddlawson/My\ Drive/Personal/Logan/CS236/DatalogParser/cmake-build-debug/Makefile&quot;  VERBOSE=1 DatalogParser"/>
-					<CompileFile command="/usr/bin/make -j10 -f &quot;/Users/toddlawson/My\ Drive/Personal/Logan/CS236/DatalogParser/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j10 -f &quot;/Users/toddlawson/My\ Drive/Personal/Logan/CS236/DatalogParser/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j10 -f &quot;/Users/toddlawson/My\ Drive/Personal/Logan/CS236/DatalogParser/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j16 -f &quot;/Users/loganlawson/CLionProjects/BYU/CS236/DatalogParser/cmake-build-debug/Makefile&quot;  VERBOSE=1 DatalogParser"/>
+					<CompileFile command="/usr/bin/make -j16 -f &quot;/Users/loganlawson/CLionProjects/BYU/CS236/DatalogParser/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j16 -f &quot;/Users/loganlawson/CLionProjects/BYU/CS236/DatalogParser/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j16 -f &quot;/Users/loganlawson/CLionProjects/BYU/CS236/DatalogParser/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="DatalogParser/fast">
-				<Option output="/Users/toddlawson/My Drive/Personal/Logan/CS236/DatalogParser/cmake-build-debug/DatalogParser" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/Users/toddlawson/My Drive/Personal/Logan/CS236/DatalogParser/cmake-build-debug"/>
+				<Option output="/Users/loganlawson/CLionProjects/BYU/CS236/DatalogParser/cmake-build-debug/DatalogParser" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/loganlawson/CLionProjects/BYU/CS236/DatalogParser/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
 				<Compiler>
-					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/bin/../include/c++/v1"/>
 					<Add directory="/usr/local/include"/>
-					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/13.0.0/include"/>
-					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/lib/clang/13.1.6/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/include"/>
 					<Add directory="/System/Library/Frameworks"/>
 					<Add directory="/Library/Frameworks"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j10 -f &quot;/Users/toddlawson/My\ Drive/Personal/Logan/CS236/DatalogParser/cmake-build-debug/Makefile&quot;  VERBOSE=1 DatalogParser/fast"/>
-					<CompileFile command="/usr/bin/make -j10 -f &quot;/Users/toddlawson/My\ Drive/Personal/Logan/CS236/DatalogParser/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j10 -f &quot;/Users/toddlawson/My\ Drive/Personal/Logan/CS236/DatalogParser/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j10 -f &quot;/Users/toddlawson/My\ Drive/Personal/Logan/CS236/DatalogParser/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j16 -f &quot;/Users/loganlawson/CLionProjects/BYU/CS236/DatalogParser/cmake-build-debug/Makefile&quot;  VERBOSE=1 DatalogParser/fast"/>
+					<CompileFile command="/usr/bin/make -j16 -f &quot;/Users/loganlawson/CLionProjects/BYU/CS236/DatalogParser/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j16 -f &quot;/Users/loganlawson/CLionProjects/BYU/CS236/DatalogParser/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j16 -f &quot;/Users/loganlawson/CLionProjects/BYU/CS236/DatalogParser/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="/Users/toddlawson/My Drive/Personal/Logan/CS236/DatalogParser/Database.h">
+		<Unit filename="/Users/loganlawson/CLionProjects/BYU/CS236/DatalogParser/Database.h">
 			<Option target="DatalogParser"/>
 		</Unit>
-		<Unit filename="/Users/toddlawson/My Drive/Personal/Logan/CS236/DatalogParser/Parameter.h">
+		<Unit filename="/Users/loganlawson/CLionProjects/BYU/CS236/DatalogParser/Parameter.h">
 			<Option target="DatalogParser"/>
 		</Unit>
-		<Unit filename="/Users/toddlawson/My Drive/Personal/Logan/CS236/DatalogParser/Parser.h">
+		<Unit filename="/Users/loganlawson/CLionProjects/BYU/CS236/DatalogParser/Parser.h">
 			<Option target="DatalogParser"/>
 		</Unit>
-		<Unit filename="/Users/toddlawson/My Drive/Personal/Logan/CS236/DatalogParser/Predicate.h">
+		<Unit filename="/Users/loganlawson/CLionProjects/BYU/CS236/DatalogParser/Predicate.h">
 			<Option target="DatalogParser"/>
 		</Unit>
-<<<<<<< HEAD
-		<Unit filename="/Users/toddlawson/My Drive/Personal/Logan/CS236/DatalogParser/Query.h">
-=======
 		<Unit filename="/Users/loganlawson/CLionProjects/BYU/CS236/DatalogParser/Query.h">
 			<Option target="DatalogParser"/>
 		</Unit>
 		<Unit filename="/Users/loganlawson/CLionProjects/BYU/CS236/DatalogParser/Relation.h">
->>>>>>> parent of 9e7150c (Changes)
 			<Option target="DatalogParser"/>
 		</Unit>
-		<Unit filename="/Users/toddlawson/My Drive/Personal/Logan/CS236/DatalogParser/Relation.h">
+		<Unit filename="/Users/loganlawson/CLionProjects/BYU/CS236/DatalogParser/Rule.h">
 			<Option target="DatalogParser"/>
 		</Unit>
-		<Unit filename="/Users/toddlawson/My Drive/Personal/Logan/CS236/DatalogParser/Rule.h">
+		<Unit filename="/Users/loganlawson/CLionProjects/BYU/CS236/DatalogParser/Scanner.h">
 			<Option target="DatalogParser"/>
 		</Unit>
-		<Unit filename="/Users/toddlawson/My Drive/Personal/Logan/CS236/DatalogParser/Scanner.h">
+		<Unit filename="/Users/loganlawson/CLionProjects/BYU/CS236/DatalogParser/Scheme.h">
 			<Option target="DatalogParser"/>
 		</Unit>
-<<<<<<< HEAD
-		<Unit filename="/Users/toddlawson/My Drive/Personal/Logan/CS236/DatalogParser/Scheme.h">
+		<Unit filename="/Users/loganlawson/CLionProjects/BYU/CS236/DatalogParser/StringUtil.h">
 			<Option target="DatalogParser"/>
 		</Unit>
-		<Unit filename="/Users/toddlawson/My Drive/Personal/Logan/CS236/DatalogParser/Token.h">
-=======
 		<Unit filename="/Users/loganlawson/CLionProjects/BYU/CS236/DatalogParser/Token.h">
->>>>>>> parent of 9e7150c (Changes)
 			<Option target="DatalogParser"/>
 		</Unit>
-		<Unit filename="/Users/toddlawson/My Drive/Personal/Logan/CS236/DatalogParser/Tuple.h">
+		<Unit filename="/Users/loganlawson/CLionProjects/BYU/CS236/DatalogParser/Tuple.h">
 			<Option target="DatalogParser"/>
 		</Unit>
-<<<<<<< HEAD
-		<Unit filename="/Users/toddlawson/My Drive/Personal/Logan/CS236/DatalogParser/main.cpp">
+		<Unit filename="/Users/loganlawson/CLionProjects/BYU/CS236/DatalogParser/Utils.h">
 			<Option target="DatalogParser"/>
 		</Unit>
-		<Unit filename="/Users/toddlawson/My Drive/Personal/Logan/CS236/DatalogParser/CMakeLists.txt">
-=======
 		<Unit filename="/Users/loganlawson/CLionProjects/BYU/CS236/DatalogParser/main.cpp">
 			<Option target="DatalogParser"/>
 		</Unit>
 		<Unit filename="/Users/loganlawson/CLionProjects/BYU/CS236/DatalogParser/CMakeLists.txt">
->>>>>>> parent of 9e7150c (Changes)
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>
 	</Project>

@@ -2,12 +2,16 @@
 #define DATALOGPARSER_DATABASE_H
 
 #include "Relation.h"
+#include "StringUtil.h"
+#include "Utils.h"
+#include "Rule.h"
 
 class Database {
 
 private:
 
     vector<Relation> relations;
+    vector<Rule> rules;
 
 public:
 
@@ -33,6 +37,55 @@ public:
         }
     }
 
+   void parseRules(string rulesLine) {
+      Predicate headPredicate(StringUtil::getSubstringToChar(rulesLine, ':'));
+      Rule newRule(headPredicate);
+      vector<Predicate> predicateList;
+      // Parse until comma, and populate vector. Loop until Period.
+      string temp = StringUtil::getSubstringAfterChar(rulesLine, '-');
+      while (true) {
+         string predString = getNextPredicateString(temp);
+         Predicate newPred(predString);
+         newRule.addPredicate(newPred);
+         if (temp[0] == '.') {
+            break;
+         }
+         temp =  StringUtil::getSubstringAfterChar(temp, ',');
+
+//          temp = StringUtil::getSubstringAfterChar(temp, ',');
+//          if (temp2 == temp) {
+//             break;
+//          }
+//          temp2 = temp;
+//          predicateList.push_back(newPred);
+      }
+      evaluatePredicates(newRule);
+      rules.push_back(newRule);
+      cout << newRule << endl;
+   }
+
+   string getNextPredicateString(string &line) {
+      StringUtil::leftTrim(line);
+      string temp = line;
+      string::size_type pos = temp.find(')');
+      if (pos != string::npos) {
+         string predString = temp.substr(0, pos + 1);
+         line = temp.substr(pos + 1);
+         return predString;
+      } else {
+         return "";
+      }
+   }
+
+   void evaluatePredicates(Rule rule) {
+      // Toss Predicates into evaluateQuery function
+      vector<Relation> predRelations;
+      for (long unsigned int i = 0; i < rule.predicateList.size(); i++) {
+         Relation subRelation = evaluateQuery(rule.predicateList[i].toString());
+         predRelations.push_back(subRelation);
+      }
+   }
+
     Relation evaluateQuery(string queryString) {
         // Get the relation of the query.
         int relationIndex = -1;
@@ -46,7 +99,6 @@ public:
                 break;
             }
         }
-        Query newQuery(queryString);
         // Gets subset relation based on constants and variables
         Relation subRelation = relation;
         vector<string> queryParameters = getParameters(queryString);
@@ -80,9 +132,6 @@ public:
                 }
             }
         }
-
-        newQuery.queriedTuples = subRelation.tuples;
-        relations[relationIndex].queries.push_back(newQuery);
         return subRelation;
     }
 

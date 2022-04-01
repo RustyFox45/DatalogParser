@@ -2,14 +2,12 @@
 #define DATALOGPARSER_RELATION_H
 
 #include "Tuple.h"
-#include "Query.h"
 
 class Relation {
 
 public:
     string name;
     Scheme scheme;
-    vector<Query> queries;
     set<Tuple> tuples;
 
 public:

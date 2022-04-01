@@ -1,6 +1,5 @@
 file(REMOVE_RECURSE
   "CMakeFiles/DatalogParser.dir/main.cpp.o"
-  "CMakeFiles/DatalogParser.dir/main.cpp.o.d"
   "DatalogParser"
   "DatalogParser.pdb"
 )

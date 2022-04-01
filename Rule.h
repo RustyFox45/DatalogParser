@@ -8,7 +8,7 @@
 #include "Predicate.h"
 
 class Rule {
-private:
+public:
 
     Predicate headPredicate;
     vector<Predicate> predicateList;
