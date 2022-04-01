@@ -43,8 +43,12 @@ Parameter.h
 /Users/loganlawson/CLionProjects/BYU/CS236/DatalogParser/Parameter.h
 
 /Users/loganlawson/CLionProjects/BYU/CS236/DatalogParser/Relation.h
+set
+-
 Tuple.h
 /Users/loganlawson/CLionProjects/BYU/CS236/DatalogParser/Tuple.h
+Scheme.h
+/Users/loganlawson/CLionProjects/BYU/CS236/DatalogParser/Scheme.h
 
 /Users/loganlawson/CLionProjects/BYU/CS236/DatalogParser/Rule.h
 Predicate.h
@@ -91,4 +95,6 @@ Parser.h
 /Users/loganlawson/CLionProjects/BYU/CS236/DatalogParser/Parser.h
 Database.h
 /Users/loganlawson/CLionProjects/BYU/CS236/DatalogParser/Database.h
+Rule.h
+/Users/loganlawson/CLionProjects/BYU/CS236/DatalogParser/Rule.h
 
