@@ -9,18 +9,18 @@
 #include <string>
 
 class Parameter {
-private:
-    string value;
+public:
+   string value;
 
 public:
 
-    Parameter(string value) : value(value) {}
+   Parameter(string value) : value(value) {}
 
-    string toString() const {
-        stringstream out;
-        out << value;
-        return out.str();
-    }
+   string toString() const {
+      stringstream out;
+      out << value;
+      return out.str();
+   }
 
    friend ostream &operator<<(ostream &os, const Parameter &item) {
       os << item.toString();

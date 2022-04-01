@@ -5,51 +5,52 @@
 #include "Scanner.h"
 #include "Parser.h"
 #include "Database.h"
+#include "Rule.h"
 
 using namespace std;
 
 enum SectionName {
-    Schemes,
-    Facts,
-    Rules,
-    Queries
+   Schemes,
+   Facts,
+   Rules,
+   Queries
 };
 
 string fixQueryString(string stringToFix);
 
 string myInput(ifstream &in) {
-    string returnString = "";
-    string line = "";
-    int i = 0;
-    while (getline(in, line)) {
-        if (i > 0) {
-            returnString.push_back('\n');
-        }
-        returnString.append(line);
-        i++;
-    }
-    returnString.push_back('\n');
-    return returnString;
+   string returnString = "";
+   string line = "";
+   int i = 0;
+   while (getline(in, line)) {
+      if (i > 0) {
+         returnString.push_back('\n');
+      }
+      returnString.append(line);
+      i++;
+   }
+   returnString.push_back('\n');
+   return returnString;
 }
 
 string getKeywords(string keywordInput) {
-    // QUERIES, SCHEMES, FACTS, RULES
-    string result = "";
-    if (keywordInput.length() >= 7 && keywordInput.substr(0, 7) == "Queries") {
-        result = "Queries";
-    } else if (keywordInput.length() >= 7 && keywordInput.substr(0, 7) == "Schemes") {
-        result = "Schemes";
-    } else if (keywordInput.length() >= 5 && keywordInput.substr(0, 5) == "Facts") {
-        result = "Facts";
-    } else if (keywordInput.length() >= 5 && keywordInput.substr(0, 5) == "Rules") {
-        result = "Rules";
-    }
-    return result;
+   // QUERIES, SCHEMES, FACTS, RULES
+   string result = "";
+   if (keywordInput.length() >= 7 && keywordInput.substr(0, 7) == "Queries") {
+      result = "Queries";
+   } else if (keywordInput.length() >= 7 && keywordInput.substr(0, 7) == "Schemes") {
+      result = "Schemes";
+   } else if (keywordInput.length() >= 5 && keywordInput.substr(0, 5) == "Facts") {
+      result = "Facts";
+   } else if (keywordInput.length() >= 5 && keywordInput.substr(0, 5) == "Rules") {
+      result = "Rules";
+   }
+   return result;
 }
 
-int main(int argc, char* argv[]) {
+int main(int argc, char *argv[]) {
 
-    // Get file names
+   // Get file names
 //    string inputFileName = argv[1];
 //
 //    //
@@ -127,11 +128,14 @@ int main(int argc, char* argv[]) {
 //    cout << result.toString();
 
 
-    // Get file names
-    string inputFileName = argv[1];
+   // Get file names
+   if (argc == 0) {
+      cout << "Please add input file." << endl;
+      exit(0);
+   }
 
-    ifstream in(inputFileName);
-
+   string inputFileName = argv[1];
+   ifstream in(inputFileName);
    if (in) {
 
    } else {
@@ -140,87 +144,100 @@ int main(int argc, char* argv[]) {
       return 0;
    }
 
-    Database database;
 
-    SectionName sectionName;
+   Database database;
 
-    string line, section;
-    while (getline(in, line)) {
-        try {
+   SectionName sectionName;
 
-            // Step through input file till I hit "Schemes:"
-            if (line.size() == 0 || line.substr(0,1) == "#") continue;
-            if (getKeywords(line) == "Schemes") {
-                sectionName = Schemes;
-            } else if (getKeywords(line) == "Facts") {
-                sectionName = Facts;
-            } else if (getKeywords(line) == "Rules") {
-                sectionName = Rules;
-            } else if (getKeywords(line) == "Queries") {
-                sectionName = Queries;
-            } else {
-                switch (sectionName) {
-                    case Schemes:
-                        database.addRelation(line);
-                        break;
-                    case Facts:
-                        database.addTupleToRelation(line);
-                        break;
-                    case Rules:
-                        database.parseRules(line);
-                        break;
-                    case Queries:
-                        Relation subRelation = database.evaluateQuery(line);
-                        vector<string> parameters = Utils::getParameters(line);
-                        line = fixQueryString(line);
-                        cout << line;
-                        if (subRelation.tuples.size()) {
-                           cout << " Yes(" << subRelation.tuples.size() << ")" << endl;
-                        } else {
-                           cout << " No" << endl;
+   string line, section;
+   while (getline(in, line)) {
+      try {
+
+         // Step through input file till I hit "Schemes:"
+         if (line.size() == 0 || line.substr(0, 1) == "#") continue;
+         if (getKeywords(line) == "Schemes") {
+            sectionName = Schemes;
+         } else if (getKeywords(line) == "Facts") {
+            sectionName = Facts;
+         } else if (getKeywords(line) == "Rules") {
+            sectionName = Rules;
+         } else if (getKeywords(line) == "Queries") {
+            sectionName = Queries;
+         } else {
+            switch (sectionName) {
+               case Schemes:
+                  database.addRelation(line);
+                  break;
+               case Facts:
+                  database.addTupleToRelation(line);
+                  break;
+               case Rules: {
+                     Rule rule = database.parseRule(line);
+                     for (auto tuple: rule.relation.tuples) {
+                        set<string> printedParams;
+                        bool firstPrintedParam = true;
+                        cout << "  ";
+                        for (long unsigned int i = 0; i < rule.relation.scheme.size(); ++i) {
+                           if(i != 0) {
+                              cout << ", ";
+                           }
+                           cout << rule.relation.scheme[i] << " = " << tuple[i];
                         }
-                        //for(int i = 0; i < subRelation.tuples.size(); i++) {
-                        for(auto tuple : subRelation.tuples) {
-                           set<string> printedParams;
-                           bool firstPrintedParam = true;
-                           for (long unsigned int j = 0; j < subRelation.scheme.size(); ++j) {
-                              if (!Utils::paramIsConstant(parameters[j])) {
-                                 if (printedParams.find(parameters[j]) != printedParams.end()) {
-                                 }
-                                 else {
-                                    printedParams.insert(parameters[j]);
-                                    if (!firstPrintedParam) {
-                                       cout << ", ";
-                                    } else {
-                                       cout << "  ";
-                                       firstPrintedParam = false;
-                                    }
-                                    cout << parameters[j] << "=" << tuple[j];
-                                 }
+                        cout << endl;
+                     }
+                  }
+                  break;
+               case Queries:
+                  Relation subRelation = database.evaluateQuery(line);
+                  vector<string> parameters = Utils::getParameters(line);
+                  line = fixQueryString(line);
+                  cout << line;
+                  if (subRelation.tuples.size()) {
+                     cout << " Yes(" << subRelation.tuples.size() << ")" << endl;
+                  } else {
+                     cout << " No" << endl;
+                  }
+                  //for(int i = 0; i < subRelation.tuples.size(); i++) {
+                  for (auto tuple: subRelation.tuples) {
+                     set<string> printedParams;
+                     bool firstPrintedParam = true;
+                     for (long unsigned int j = 0; j < subRelation.scheme.size(); ++j) {
+                        if (!Utils::paramIsConstant(parameters[j])) {
+                           if (printedParams.find(parameters[j]) != printedParams.end()) {
+                           } else {
+                              printedParams.insert(parameters[j]);
+                              if (!firstPrintedParam) {
+                                 cout << ", ";
+                              } else {
+                                 cout << "  ";
+                                 firstPrintedParam = false;
                               }
-                           }
-                           if (!firstPrintedParam) {
-                              cout << endl;
+                              cout << parameters[j] << "=" << tuple[j];
                            }
                         }
-                        // database.projectQueries(tuples);
-                        break;
-                }
+                     }
+                     if (!firstPrintedParam) {
+                        cout << endl;
+                     }
+                  }
+                  // database.projectQueries(tuples);
+                  break;
             }
-        }
-        catch (const std::invalid_argument& e) {
+         }
+      }
+      catch (const std::invalid_argument &e) {
 
-        }
-        catch (...) {
+      }
+      catch (...) {
 
-        }
-    }
+      }
+   }
 
-    // Print out all the stuff
+   // Print out all the stuff
 
-    // Clean up memory
+   // Clean up memory
 
-    in.close();
+   in.close();
 
 
 //   // Get file names
@@ -254,7 +271,11 @@ int main(int argc, char* argv[]) {
 //
 //   in.close();
 
-    return 0;
+   return 0;
+}
+
+void printRelation(const Relation &relation) {
+
 }
 
 string fixQueryString(string stringToFix) {

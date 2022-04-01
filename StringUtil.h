@@ -5,12 +5,12 @@ class StringUtil {
 
 public:
 
-   static string& leftTrim(string& str) {
+   static string &leftTrim(string &str) {
       str.erase(0, str.find_first_not_of(' '));
       return str;
    }
 
-   static string& rightTrim(string& str) {
+   static string &rightTrim(string &str) {
       str.erase(str.find_last_not_of(' ') + 1);
       return str;
    }
