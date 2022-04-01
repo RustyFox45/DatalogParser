@@ -1,10 +1,14 @@
+//
+// Created by Logan Lawson on 2/10/22.
+//
+
 #ifndef LAB2_RULE_H
 #define LAB2_RULE_H
 
 #include "Predicate.h"
 
 class Rule {
-public:
+private:
 
     Predicate headPredicate;
     vector<Predicate> predicateList;

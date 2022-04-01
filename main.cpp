@@ -15,7 +15,15 @@ enum SectionName {
     Queries
 };
 
+string& leftTrim(string& str, string chars);
+
+string& rightTrim(string& str, string chars);
+
 string fixQueryString(string stringToFix);
+
+string getSubstringToChar(string const &s, char c);
+
+string getSubstringAfterChar(string const &s, char c);
 
 string myInput(ifstream &in) {
     string returnString = "";
@@ -127,151 +135,167 @@ int main(int argc, char* argv[]) {
 //    cout << result.toString();
 
 
-    // Get file names
-    string inputFileName = argv[1];
-
-    ifstream in(inputFileName);
-
-   if (in) {
-
-   } else {
-      cerr << "File could not be opened: " << inputFileName << endl;
-      cerr << "Error Code: " << strerror(errno) << endl;
-      return 0;
-   }
-
-    Database database;
-
-    SectionName sectionName;
-
-    string line, section;
-    while (getline(in, line)) {
-        try {
-
-            // Step through input file till I hit "Schemes:"
-            if (line.size() == 0 || line.substr(0,1) == "#") continue;
-            if (getKeywords(line) == "Schemes") {
-                sectionName = Schemes;
-            } else if (getKeywords(line) == "Facts") {
-                sectionName = Facts;
-            } else if (getKeywords(line) == "Rules") {
-                sectionName = Rules;
-            } else if (getKeywords(line) == "Queries") {
-                sectionName = Queries;
-            } else {
-                switch (sectionName) {
-                    case Schemes:
-                        database.addRelation(line);
-                        break;
-                    case Facts:
-                        database.addTupleToRelation(line);
-                        break;
-                    case Rules:
-                        database.parseRules(line);
-                        break;
-                    case Queries:
-                        Relation subRelation = database.evaluateQuery(line);
-                        vector<string> parameters = Utils::getParameters(line);
-                        line = fixQueryString(line);
-                        cout << line;
-                        if (subRelation.tuples.size()) {
-                           cout << " Yes(" << subRelation.tuples.size() << ")" << endl;
-                        } else {
-                           cout << " No" << endl;
-                        }
-                        //for(int i = 0; i < subRelation.tuples.size(); i++) {
-                        for(auto tuple : subRelation.tuples) {
-                           set<string> printedParams;
-                           bool firstPrintedParam = true;
-                           for (long unsigned int j = 0; j < subRelation.scheme.size(); ++j) {
-                              if (!Utils::paramIsConstant(parameters[j])) {
-                                 if (printedParams.find(parameters[j]) != printedParams.end()) {
-                                 }
-                                 else {
-                                    printedParams.insert(parameters[j]);
-                                    if (!firstPrintedParam) {
-                                       cout << ", ";
-                                    } else {
-                                       cout << "  ";
-                                       firstPrintedParam = false;
-                                    }
-                                    cout << parameters[j] << "=" << tuple[j];
-                                 }
-                              }
-                           }
-                           if (!firstPrintedParam) {
-                              cout << endl;
-                           }
-                        }
-                        // database.projectQueries(tuples);
-                        break;
-                }
-            }
-        }
-        catch (const std::invalid_argument& e) {
-
-        }
-        catch (...) {
-
-        }
-    }
-
-    // Print out all the stuff
-
-    // Clean up memory
-
-    in.close();
-
-
-//   // Get file names
-//   string inputFileName = argv[1];
+//    // Get file names
+//    string inputFileName = argv[1];
 //
-//   ifstream in(inputFileName);
+//    ifstream in(inputFileName);
+
+    //string inputString = myInput(in);
+
+//    Database database;
 //
-//   Relation studentRelation("students", Scheme( {"ID", "Name", "Major"} ));
+//    SectionName sectionName;
 //
-//   vector<string> studentValues[] = {
-//         {"'42'", "'Ann'", "'CS'"},
-//         {"'64'", "'Ned'", "'EE'"},
-//   };
+//    string line, section;
+//    while (getline(in, line)) {
+//        try {
 //
-//   for (auto& value : studentValues)
-//      studentRelation.addTuple(Tuple(value));
+//            // Step through input file till I hit "Schemes:"
+//            if (line.size() == 0 || line.substr(0,1) == "#") continue;
+//            if (getKeywords(line) == "Schemes") {
+//                sectionName = Schemes;
+//            } else if (getKeywords(line) == "Facts") {
+//                sectionName = Facts;
+//            } else if (getKeywords(line) == "Rules") {
+//                sectionName = Rules;
+//            } else if (getKeywords(line) == "Queries") {
+//                sectionName = Queries;
+//            } else {
+//                switch (sectionName) {
+//                    case Schemes:
+//                        database.addRelation(line);
+//                        break;
+//                    case Facts:
+//                        database.addTupleToRelation(line);
+//                        break;
+//                    case Rules:
+//                        // database.checkAndEvaluateRule(line);
+//                        break;
+//                    case Queries:
+//                        Relation subRelation = database.evaluateQuery(line);
+//                        vector<string> parameters = database.getParameters(line);
+//                        line = fixQueryString(line);
+//                        cout << line;
+//                        if (subRelation.tuples.size()) {
+//                           cout << " Yes(" << subRelation.tuples.size() << ")" << endl;
+//                        } else {
+//                           cout << " No" << endl;
+//                        }
+//                        //for(int i = 0; i < subRelation.tuples.size(); i++) {
+//                        for(auto tuple : subRelation.tuples) {
+//                           set<string> printedParams;
+//                           bool firstPrintedParam = true;
+//                           for (long unsigned int j = 0; j < subRelation.scheme.size(); ++j) {
+//                              if (!database.paramIsConstant(parameters[j])) {
+//                                 if (printedParams.find(parameters[j]) != printedParams.end()) {
+//                                 }
+//                                 else {
+//                                    printedParams.insert(parameters[j]);
+//                                    if (!firstPrintedParam) {
+//                                       cout << ", ";
+//                                    } else {
+//                                       cout << "  ";
+//                                       firstPrintedParam = false;
+//                                    }
+//                                    cout << parameters[j] << "=" << tuple[j];
+//                                 }
+//                              }
+//                           }
+//                           if (!firstPrintedParam) {
+//                              cout << endl;
+//                           }
+//                        }
+//                        // database.projectQueries(tuples);
+//                        break;
+//                }
+//            }
+//        }
+//        catch (const std::invalid_argument& e) {
 //
-//   //studentRelation.join(studentRelation);
+//        }
+//        catch (...) {
 //
-//   Relation courseRelation("courses", Scheme( {"ID", "Course"} ));
+//        }
+//    }
 //
-//   vector<string> courseValues[] = {
-//         {"'42'", "'CS 100'"},
-//         {"'32'", "'CS 232'"},
-//   };
+//    // Print out all the stuff
 //
-//   for (auto& value : courseValues)
-//      courseRelation.addTuple(Tuple(value));
+//    // Clean up memory
 //
-//   studentRelation.join(courseRelation);
-//
-//   in.close();
+//    in.close();
+
+
+   // Get file names
+   string inputFileName = argv[1];
+
+   ifstream in(inputFileName);
+
+   Relation studentRelation("students", Scheme( {"ID", "Name", "Major"} ));
+
+   vector<string> studentValues[] = {
+         {"'42'", "'Ann'", "'CS'"},
+         {"'64'", "'Ned'", "'EE'"},
+   };
+
+   for (auto& value : studentValues)
+      studentRelation.addTuple(Tuple(value));
+
+   //studentRelation.join(studentRelation);
+
+   Relation courseRelation("courses", Scheme( {"ID", "Course"} ));
+
+   vector<string> courseValues[] = {
+         {"'42'", "'CS 100'"},
+         {"'32'", "'CS 232'"},
+   };
+
+   for (auto& value : courseValues)
+      courseRelation.addTuple(Tuple(value));
+
+   studentRelation.join(courseRelation);
+
+   in.close();
 
     return 0;
 }
 
+string& leftTrim(string& str, string chars)
+{
+   str.erase(0, str.find_first_not_of(chars));
+   return str;
+}
+
+string& rightTrim(string& str, string chars)
+{
+   str.erase(str.find_last_not_of(chars) + 1);
+   return str;
+}
+
 string fixQueryString(string stringToFix) {
    string newString = stringToFix;
-   newString = StringUtil::leftTrim(newString);
-   newString = StringUtil::rightTrim(newString);
-   string name = StringUtil::getSubstringToChar(newString, '(');
-   StringUtil::leftTrim(name);
-   StringUtil::rightTrim(name);
-   string balanceOfQueryString;
-
-   string::size_type pos = newString.find('(');
-   if (pos != string::npos) {
-      balanceOfQueryString = newString.substr(pos);
-   } else {
-      balanceOfQueryString = newString;
-   }
-
+   newString = leftTrim(newString, " ");
+   newString = rightTrim(newString, " ");
+   string name = getSubstringToChar(newString, '(');
+   leftTrim(name, " ");
+   rightTrim(name, " ");
+   string balanceOfQueryString = getSubstringAfterChar(newString, '(');
    return name + balanceOfQueryString;
+}
+
+string getSubstringToChar(string const &s, char c) {
+   string::size_type pos = s.find(c);
+   if (pos != string::npos) {
+      return s.substr(0, pos);
+   } else {
+      return s;
+   }
+}
+
+string getSubstringAfterChar(string const &s, char c) {
+   string::size_type pos = s.find(c);
+   if (pos != string::npos) {
+      return s.substr(pos);
+   } else {
+      return s;
+   }
 }

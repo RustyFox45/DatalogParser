@@ -1,8 +1,10 @@
+//
+// Created by Logan Lawson on 2/10/22.
+//
+
 #ifndef LAB2_PREDICATE_H
 #define LAB2_PREDICATE_H
 #include "Parameter.h"
-#include "StringUtil.h"
-#include "Utils.h"
 
 
 class Predicate {
@@ -12,29 +14,13 @@ private:
 
 public:
 
-    Predicate(string predicateString) {
-       parsePredicate(predicateString);
-    }
+    Predicate(string predicateId) : predicateId(predicateId) {}
 
     void addParameter(Parameter newParam) {
         myParameters.push_back(newParam);
     }
-
     vector<Parameter> getParameters() const {
         return myParameters;
-    }
-
-    void parsePredicate(string predicateString) {
-       string temp = predicateString;
-       StringUtil::leftTrim(predicateString);
-       StringUtil::rightTrim(predicateString);
-
-       predicateId = StringUtil::getSubstringToChar(StringUtil::leftTrim(predicateString), '(');
-       vector<string> pList = Utils::getParameters(predicateString);
-       for (auto pName: pList) {
-          Parameter p(pName);
-          myParameters.push_back(p);
-       }
     }
 
     string toString() const {

@@ -92,7 +92,14 @@
 		<Unit filename="/Users/toddlawson/My Drive/Personal/Logan/CS236/DatalogParser/Predicate.h">
 			<Option target="DatalogParser"/>
 		</Unit>
+<<<<<<< HEAD
 		<Unit filename="/Users/toddlawson/My Drive/Personal/Logan/CS236/DatalogParser/Query.h">
+=======
+		<Unit filename="/Users/loganlawson/CLionProjects/BYU/CS236/DatalogParser/Query.h">
+			<Option target="DatalogParser"/>
+		</Unit>
+		<Unit filename="/Users/loganlawson/CLionProjects/BYU/CS236/DatalogParser/Relation.h">
+>>>>>>> parent of 9e7150c (Changes)
 			<Option target="DatalogParser"/>
 		</Unit>
 		<Unit filename="/Users/toddlawson/My Drive/Personal/Logan/CS236/DatalogParser/Relation.h">
@@ -104,19 +111,30 @@
 		<Unit filename="/Users/toddlawson/My Drive/Personal/Logan/CS236/DatalogParser/Scanner.h">
 			<Option target="DatalogParser"/>
 		</Unit>
+<<<<<<< HEAD
 		<Unit filename="/Users/toddlawson/My Drive/Personal/Logan/CS236/DatalogParser/Scheme.h">
 			<Option target="DatalogParser"/>
 		</Unit>
 		<Unit filename="/Users/toddlawson/My Drive/Personal/Logan/CS236/DatalogParser/Token.h">
+=======
+		<Unit filename="/Users/loganlawson/CLionProjects/BYU/CS236/DatalogParser/Token.h">
+>>>>>>> parent of 9e7150c (Changes)
 			<Option target="DatalogParser"/>
 		</Unit>
 		<Unit filename="/Users/toddlawson/My Drive/Personal/Logan/CS236/DatalogParser/Tuple.h">
 			<Option target="DatalogParser"/>
 		</Unit>
+<<<<<<< HEAD
 		<Unit filename="/Users/toddlawson/My Drive/Personal/Logan/CS236/DatalogParser/main.cpp">
 			<Option target="DatalogParser"/>
 		</Unit>
 		<Unit filename="/Users/toddlawson/My Drive/Personal/Logan/CS236/DatalogParser/CMakeLists.txt">
+=======
+		<Unit filename="/Users/loganlawson/CLionProjects/BYU/CS236/DatalogParser/main.cpp">
+			<Option target="DatalogParser"/>
+		</Unit>
+		<Unit filename="/Users/loganlawson/CLionProjects/BYU/CS236/DatalogParser/CMakeLists.txt">
+>>>>>>> parent of 9e7150c (Changes)
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>
 	</Project>
