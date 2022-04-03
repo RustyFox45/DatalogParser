@@ -84,6 +84,7 @@ public:
          }
       }
       Relation joinedRelation;
+      relationsJoinable = true;
       if (ruleRelations.size() > 1) {
          if (relationsJoinable) {
             // Do merge
@@ -92,7 +93,6 @@ public:
                Relation rRelation = ruleRelations[i];
                joinedRelation = lRelation.join(rRelation);
             }
-
          } else {
          }
       } else {
@@ -131,8 +131,14 @@ public:
             break;
          }
       }
+
+      // Break down query string and get renamed scheme
+      // set subRelation scheme to the new scheme
+      Scheme newScheme(getParameters(queryString));
+
       // Gets subset relation based on constants and variables
       Relation subRelation = relation;
+      subRelation.scheme = newScheme;
       vector<string> queryParameters = getParameters(queryString);
       for (long unsigned int i = 0; i < relation.scheme.size(); i++) {
          const string param = queryParameters[i];

@@ -53,6 +53,8 @@ Scheme.h
 /Users/loganlawson/CLionProjects/BYU/CS236/DatalogParser/Rule.h
 Predicate.h
 /Users/loganlawson/CLionProjects/BYU/CS236/DatalogParser/Predicate.h
+Relation.h
+/Users/loganlawson/CLionProjects/BYU/CS236/DatalogParser/Relation.h
 
 /Users/loganlawson/CLionProjects/BYU/CS236/DatalogParser/Scanner.h
 string

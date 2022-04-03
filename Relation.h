@@ -81,9 +81,20 @@ public:
 
    Scheme joinSchemes(const Scheme &rScheme) {
       Scheme newScheme;
-      set<string> newSchemeSet(scheme.begin(), scheme.end());
-      std::copy(rScheme.begin(), rScheme.end(), std::inserter(newSchemeSet, newSchemeSet.end()));
-      newScheme.assign(newSchemeSet.begin(), newSchemeSet.end());
+      // Copy left scheme to new scheme
+      newScheme = scheme;
+      // Copy unique scheme names to new scheme
+      for(auto rName : rScheme) {
+         bool duplicateValue = false;
+         for(auto lName : scheme) {
+            if(rName == lName) {
+               duplicateValue = true;
+            }
+         }
+         if(!duplicateValue) {
+            newScheme.push_back(rName);
+         }
+      }
       return newScheme;
    }
 
@@ -97,14 +108,14 @@ public:
       for(int i = 0; i < joinedScheme.size(); i++) {
          string columnName = joinedScheme[i];
          bool valueFound = false;
-         for (int lIndex = 0; lIndex < lScheme.size(); lIndex++) {
+         for (long unsigned int lIndex = 0; lIndex < lScheme.size(); lIndex++) {
             if(lScheme[lIndex] == columnName) {
                newTuple.push_back(lTuple[lIndex]);
                valueFound = true;
             }
          }
          if(!valueFound) {
-            for (int rIndex = 0; rIndex < rScheme.size(); rIndex++) {
+            for (long unsigned int rIndex = 0; rIndex < rScheme.size(); rIndex++) {
                if(rScheme[rIndex] == columnName) {
                   newTuple.push_back(rTuple[rIndex]);
                }

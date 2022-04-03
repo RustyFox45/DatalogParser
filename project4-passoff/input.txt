@@ -1,28 +1,37 @@
 
 
-# project without re-order, no joins
+# joins: two relations, no common variables
 
 
 Schemes:
 
-  s1(a,b)
-  s2(b,c)
+  a(x,y)
+  b(x,y,z)
 
-  s3(a)
+  c(x,y,z,v,w)
+  d(x,y,z,v,w)
 
 Facts:
 
-  s1('1','4').
-  s1('2','4').
-  s1('2','5').
+  a('1','4').
+  a('2','4').
+  a('2','5').
 
-  s2('3','4').
-  s2('5','6').
-  s2('7','4').
+  b('5','4','7').
+  b('5','4','8').
+  b('6','4','8').
 
 Rules:
 
-  s3(a) :- s1(a,b), s2(b,c).
-  s3(a) :- s1(a,b).
+  c(x,y,z,v,w) :- a(x,y), b(z,v,w).
+  d(x,y,z,v,w) :- b(x,y,z), a(v,w).
 
 Queries:
+
+  a(x,y)?
+  b(x,y,z)?
+
+  c(x,y,z,v,w)?
+  d(x,y,z,v,w)?
+
+
