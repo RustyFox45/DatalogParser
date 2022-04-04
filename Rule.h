@@ -6,7 +6,8 @@
 
 class Rule {
 public:
-
+   string ruleString;
+   Scheme originalScheme;
    Predicate headPredicate;
    vector<Predicate> predicateList;
    Relation relation;

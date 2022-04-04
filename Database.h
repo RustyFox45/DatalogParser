@@ -5,42 +5,56 @@
 #include "StringUtil.h"
 #include "Utils.h"
 #include "Rule.h"
+#include "Query.h"
 
 class Database {
 
-private:
-   vector<Relation> relations;
+public:
+   //vector<Relation> relations;
+   vector<Relation> schemes;
+   vector<Query> queries;
+   vector<Rule> rules;
 
 public:
 
+   // ***********************************************************************************
    Database() {}
 
-   void addRelation(string relationString) {
+   // ***********************************************************************************
+   void addScheme(string relationString) {
       // Create Relation from parsing string
-      string relationName = getSubstringToChar(leftTrim(relationString), '(');
-      Scheme scheme(getParameters(relationString));
+      string relationName = StringUtil::getSubstringToChar(StringUtil::leftTrim(relationString), '(');
+      Scheme scheme(Utils::getParameters(relationString));
       Relation relation(relationName, scheme);
-      relations.push_back(relation);
+      schemes.push_back(relation);
    }
 
-   void addTupleToRelation(string relationString) {
+   // ***********************************************************************************
+   void addFact(string relationString) {
       // Iterate through relation until relationName == relation.name, then push newTuple
-      string relationName = getSubstringToChar(leftTrim(relationString), '(');
-      Tuple myTuple(getParameters(relationString));
-      for (long unsigned int i = 0; i < relations.size(); ++i) {
-         if (relations.at(i).getName() == relationName) {
-            relations.at(i).addTuple(myTuple);
+      string relationName = StringUtil::getSubstringToChar(StringUtil::leftTrim(relationString), '(');
+      Tuple myTuple(Utils::getParameters(relationString));
+      for (long unsigned int i = 0; i < schemes.size(); ++i) {
+         if (schemes.at(i).getName() == relationName) {
+            schemes.at(i).addTuple(myTuple);
             break;
          }
       }
    }
 
-   Rule parseRule(string line) {
+   // ***********************************************************************************
+   void addRule(string line) {
       string temp = line;
       StringUtil::leftTrim(temp);
       Predicate headPredicate(StringUtil::getSubstringToChar(temp, ':'));
       Rule newRule(headPredicate);
+      newRule.ruleString = temp;
       vector<Predicate> predicateList;
+      for(auto relation : schemes) {
+         if(relation.name == newRule.headPredicate.predicateId) {
+            newRule.originalScheme = relation.scheme;
+         }
+      }
       // Parse until comma, and populate vector. Loop until Period.
       temp = StringUtil::getSubstringAfterChar(line, '-');
       while (true) {
@@ -52,48 +66,30 @@ public:
          }
          temp = StringUtil::getSubstringAfterChar(temp, ',');
       }
-      evaluateRule(newRule);
-      return newRule;
+      rules.push_back(newRule);
    }
 
-   void evaluateRule(Rule &rule) {
+   // ***********************************************************************************
+   void addQuery(string line) {
+      Query query(line);
+      queries.push_back(query);
+   }
+
+   // ***********************************************************************************
+   set<Tuple> evaluateRule(Rule &rule) {
+      set<Tuple> tuplesAdded;
       vector<Relation> ruleRelations;
       for (long unsigned int i = 0; i < rule.predicateList.size(); i++) {
-         Relation ruleRelation = evaluateQuery(rule.predicateList[i].toString());
+         Relation ruleRelation = evaluateQuery(rule.predicateList[i].predicate);
          ruleRelations.push_back(ruleRelation);
       }
-      bool relationsJoinable = true;
+      Relation joinedRelation;
       if (ruleRelations.size() > 1) {
-         // We have more than one predicate associated with this rule
+         // Do merge
          for (int i = 1; i < ruleRelations.size(); i++) {
-            bool joinableTupleFound = false;
             Relation lRelation = ruleRelations[i - 1];
             Relation rRelation = ruleRelations[i];
-            for (auto lTuple: lRelation.tuples) {
-               for (auto rTuple: rRelation.tuples) {
-                  bool joinable = Relation::joinable(lRelation.scheme, rRelation.scheme, lTuple, rTuple);
-                  if (joinable) {
-                     joinableTupleFound = true;
-                  }
-               }
-            }
-            if (!joinableTupleFound) {
-               relationsJoinable = false;
-               break;
-            }
-         }
-      }
-      Relation joinedRelation;
-      relationsJoinable = true;
-      if (ruleRelations.size() > 1) {
-         if (relationsJoinable) {
-            // Do merge
-            for (int i = 1; i < ruleRelations.size(); i++) {
-               Relation lRelation = ruleRelations[i - 1];
-               Relation rRelation = ruleRelations[i];
-               joinedRelation = lRelation.join(rRelation);
-            }
-         } else {
+            joinedRelation = lRelation.join(rRelation);
          }
       } else {
          // No merge required because we only have 1 relation
@@ -103,8 +99,22 @@ public:
       // We now have a joined relation, so we need to create a new relation based on the rule head
       Relation projectedRelation = joinedRelation.projectRelation(rule.headPredicate);
       rule.relation = projectedRelation;
+
+      // Add tuples to matching scheme
+      for (int i = 0; i < schemes.size(); i++) {
+         if (schemes[i].name == rule.headPredicate.predicateId) {
+            for (auto tuple: rule.relation.tuples) {
+               bool added = schemes[i].addTuple(tuple);
+               if(added) {
+                  tuplesAdded.insert(tuple);
+               }
+            }
+         }
+      }
+      return tuplesAdded;
    }
 
+   // ***********************************************************************************
    string getNextPredicateString(string &line) {
       StringUtil::leftTrim(line);
       string temp = line;
@@ -118,15 +128,16 @@ public:
       }
    }
 
+   // ***********************************************************************************
    Relation evaluateQuery(string queryString) {
       // Get the relation of the query.
       int relationIndex = -1;
-      string relationName = getSubstringToChar(leftTrim(queryString), '(');
-      relationName = rightTrim(relationName);
+      string relationName = StringUtil::getSubstringToChar(StringUtil::leftTrim(queryString), '(');
+      relationName = StringUtil::rightTrim(relationName);
       Relation relation("", vector<string>());
-      for (long unsigned int i = 0; i < relations.size(); ++i) {
-         if (relations.at(i).getName() == relationName) {
-            relation = relations.at(i);
+      for (long unsigned int i = 0; i < schemes.size(); ++i) {
+         if (schemes[i].getName() == relationName) {
+            relation = schemes[i];
             relationIndex = i;
             break;
          }
@@ -134,12 +145,12 @@ public:
 
       // Break down query string and get renamed scheme
       // set subRelation scheme to the new scheme
-      Scheme newScheme(getParameters(queryString));
+      Scheme newScheme(Utils::getParameters(queryString));
 
       // Gets subset relation based on constants and variables
       Relation subRelation = relation;
       subRelation.scheme = newScheme;
-      vector<string> queryParameters = getParameters(queryString);
+      vector<string> queryParameters = Utils::getParameters(queryString);
       for (long unsigned int i = 0; i < relation.scheme.size(); i++) {
          const string param = queryParameters[i];
          if (paramIsConstant(param)) {
@@ -173,53 +184,90 @@ public:
       return subRelation;
    }
 
+   // ***********************************************************************************
    bool paramIsConstant(string param) {
       return param[0] == '\'';
    }
 
-   string getSubstringToChar(string const &s, char c) {
-      string::size_type pos = s.find(c);
-      if (pos != string::npos) {
-         return s.substr(0, pos);
-      } else {
-         return s;
-      }
-   }
-
-   string &leftTrim(string &str) {
-      str.erase(0, str.find_first_not_of(' '));
-      return str;
-   }
-
-   string &rightTrim(string &str) {
-      str.erase(str.find_last_not_of(' ') + 1);
-      return str;
-   }
-
-   vector<string> getParameters(string line) {
-      vector<string> returnVector;
-      string tempString = line;
-      string param;
-      string::size_type pos = line.find('(');
-      if (pos != string::npos) {
-         tempString = tempString.substr(pos + 1);
-         while (tempString.substr(0, 1) != ")") {
-            param = "";
-            while (tempString.substr(0, 1) != "," && tempString.substr(0, 1) != ")") {
-               param = param.append(tempString.substr(0, 1));
-               tempString = tempString.substr(1);
+   // ***********************************************************************************
+   string printRules() {
+      ostringstream oss;
+      bool tuplesAdded = true;
+      int passes = 0;
+      oss << "Rule Evaluation" << endl;
+      while(tuplesAdded) {
+         passes++;
+         oss << "PASS: " << passes << endl;
+         int tuplesAddedThisPass = 0;
+         for (unsigned int x = 0; x < rules.size(); x++) {
+            set<Tuple> tuplesAdded = evaluateRule(rules[x]);
+            tuplesAddedThisPass += tuplesAdded.size();
+            oss << rules[x].ruleString << endl;
+            if(tuplesAdded.size() > 0) {
+               //for (auto tuple: rules[x].relation.tuples) {
+               for (auto tuple: tuplesAdded) {
+                  set<string> printedParams;
+                  oss << "  ";
+                  for (long unsigned int i = 0; i < rules[x].relation.scheme.size(); ++i) {
+                     if (i != 0) {
+                        oss << ", ";
+                     }
+                     oss << rules[x].originalScheme[i] << "=" << tuple[i];
+                  }
+                  oss << endl;
+               }
             }
-            returnVector.push_back(param);
-            if (tempString.substr(0, 1) == ",") {
-               tempString = tempString.substr(1);
+            rules[x].relation.tuples.clear();
+         }
+         tuplesAdded = tuplesAddedThisPass > 0;
+      }
+
+      oss << endl << "Schemes populated after " << passes << " passes through the Rules." << endl;
+
+      return oss.str();
+   }
+
+   // evaluate rule and print out new tuples
+   //
+
+   // ***********************************************************************************
+   string printQueries() {
+      ostringstream oss;
+      oss << "Query Evaluation" << endl;
+      for(auto query : queries) {
+         Relation subRelation = evaluateQuery(query.queryString);
+         Scheme scheme = subRelation.scheme;
+         oss << query.queryString;
+         if (subRelation.tuples.size()) {
+            oss << " Yes(" << subRelation.tuples.size() << ")" << endl;
+         } else {
+            oss << " No" << endl;
+         }
+         for (auto tuple: subRelation.tuples) {
+            set<string> printedParams;
+            bool firstPrintedParam = true;
+            for (long unsigned int j = 0; j < subRelation.scheme.size(); ++j) {
+               if (!Utils::paramIsConstant(scheme[j])) {
+                  if (printedParams.find(scheme[j]) != printedParams.end()) {
+                  } else {
+                     printedParams.insert(scheme[j]);
+                     if (!firstPrintedParam) {
+                        oss << ", ";
+                     } else {
+                        oss << "  ";
+                        firstPrintedParam = false;
+                     }
+                     oss << scheme[j] << "=" << tuple[j];
+                  }
+               }
+            }
+            if (!firstPrintedParam) {
+               oss << endl;
             }
          }
-      } else {
-         throw "error";
       }
-      return returnVector;
+      return oss.str();
    }
-
 };
 
 #endif //DATALOGPARSER_DATABASE_H

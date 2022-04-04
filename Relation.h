@@ -18,8 +18,10 @@ public:
    Relation(const string &name, const Scheme &scheme)
          : name(name), scheme(scheme) {}
 
-   void addTuple(const Tuple &tuple) {
+   bool addTuple(const Tuple &tuple) {
+      int numTuples = tuples.size();
       tuples.insert(tuple);
+      return numTuples != tuples.size();
    }
 
    string getName() {
@@ -56,29 +58,6 @@ public:
       return joinableBool;
    }
 
-   Relation join(const Relation &r) {
-      Relation joinedRelation;
-      joinedRelation.scheme = joinSchemes(r.scheme);
-      for (auto lTuple: tuples) {
-         for (auto rTuple: r.tuples) {
-            for (int lIndex = 0; lIndex < scheme.size(); lIndex++) {
-               for (int rIndex = 0; rIndex < r.scheme.size(); rIndex++) {
-                  if (scheme[lIndex] == r.scheme[rIndex]) {
-                     // matching columns
-                     if (lTuple[lIndex] == rTuple[rIndex]) {
-                        // Matching value in tuple, so join the tuples
-                        // Tuple joinedTuple;
-                        Tuple combinedTuple = joinTuples(scheme, lTuple, r.scheme, rTuple, joinedRelation.scheme);
-                        joinedRelation.addTuple(combinedTuple);
-                     }
-                  }
-               }
-            }
-         }
-      }
-      return joinedRelation;
-   }
-
    Scheme joinSchemes(const Scheme &rScheme) {
       Scheme newScheme;
       // Copy left scheme to new scheme
@@ -96,6 +75,18 @@ public:
          }
       }
       return newScheme;
+   }
+
+   Relation join(const Relation &r) {
+      Relation joinedRelation;
+      joinedRelation.scheme = joinSchemes(r.scheme);
+      for(auto lTuple : tuples) {
+         for(auto rTuple : r.tuples) {
+            Tuple combinedTuple = joinTuples(scheme, lTuple, r.scheme, rTuple, joinedRelation.scheme);
+            joinedRelation.addTuple(combinedTuple);
+         }
+      }
+      return joinedRelation;
    }
 
    Tuple joinTuples(const Scheme &lScheme, const Tuple &lTuple, const Scheme &rScheme, const Tuple &rTuple, const Scheme &joinedScheme) {
@@ -128,7 +119,7 @@ public:
    Relation projectRelation(const Predicate &predicate) {
       Relation projectedRelation;
       projectedRelation.name = predicate.predicateId;
-      for(auto param : predicate.myParameters) {
+      for(auto param : predicate.parameters) {
          projectedRelation.scheme.push_back(param.value);
       }
 
@@ -140,7 +131,7 @@ public:
             for (unsigned rightIndex = 0; rightIndex < scheme.size(); rightIndex++) {
                const string &rightName = scheme[rightIndex];
                if (leftName == rightName) {
-                  projectedTuple.push_back(joinedTuple[leftIndex]);
+                  projectedTuple.push_back(joinedTuple[rightIndex]);
                }
             }
          }

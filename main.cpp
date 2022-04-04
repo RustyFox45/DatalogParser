@@ -166,62 +166,16 @@ int main(int argc, char *argv[]) {
          } else {
             switch (sectionName) {
                case Schemes:
-                  database.addRelation(line);
+                  database.addScheme(line);
                   break;
                case Facts:
-                  database.addTupleToRelation(line);
+                  database.addFact(line);
                   break;
-               case Rules: {
-                     Rule rule = database.parseRule(line);
-                     StringUtil::leftTrim(line);
-                     cout << line << endl;
-                     for (auto tuple: rule.relation.tuples) {
-                        set<string> printedParams;
-                        cout << "  ";
-                        for (long unsigned int i = 0; i < rule.relation.scheme.size(); ++i) {
-                           if(i != 0) {
-                              cout << ", ";
-                           }
-                           cout << rule.relation.scheme[i] << " = " << tuple[i];
-                        }
-                        cout << endl;
-                     }
-                  }
+               case Rules:
+                  database.addRule(line);
                   break;
                case Queries:
-                  Relation subRelation = database.evaluateQuery(line);
-                  vector<string> parameters = Utils::getParameters(line);
-                  line = fixQueryString(line);
-                  cout << line;
-                  if (subRelation.tuples.size()) {
-                     cout << " Yes(" << subRelation.tuples.size() << ")" << endl;
-                  } else {
-                     cout << " No" << endl;
-                  }
-                  //for(int i = 0; i < subRelation.tuples.size(); i++) {
-                  for (auto tuple: subRelation.tuples) {
-                     set<string> printedParams;
-                     bool firstPrintedParam = true;
-                     for (long unsigned int j = 0; j < subRelation.scheme.size(); ++j) {
-                        if (!Utils::paramIsConstant(parameters[j])) {
-                           if (printedParams.find(parameters[j]) != printedParams.end()) {
-                           } else {
-                              printedParams.insert(parameters[j]);
-                              if (!firstPrintedParam) {
-                                 cout << ", ";
-                              } else {
-                                 cout << "  ";
-                                 firstPrintedParam = false;
-                              }
-                              cout << parameters[j] << "=" << tuple[j];
-                           }
-                        }
-                     }
-                     if (!firstPrintedParam) {
-                        cout << endl;
-                     }
-                  }
-                  // database.projectQueries(tuples);
+                  database.addQuery(line);
                   break;
             }
          }
@@ -235,7 +189,8 @@ int main(int argc, char *argv[]) {
    }
 
    // Print out all the stuff
-
+   cout << database.printRules() << endl;
+   cout << database.printQueries() << endl;
    // Clean up memory
 
    in.close();
@@ -275,25 +230,3 @@ int main(int argc, char *argv[]) {
    return 0;
 }
 
-void printRelation(const Relation &relation) {
-
-}
-
-string fixQueryString(string stringToFix) {
-   string newString = stringToFix;
-   newString = StringUtil::leftTrim(newString);
-   newString = StringUtil::rightTrim(newString);
-   string name = StringUtil::getSubstringToChar(newString, '(');
-   StringUtil::leftTrim(name);
-   StringUtil::rightTrim(name);
-   string balanceOfQueryString;
-
-   string::size_type pos = newString.find('(');
-   if (pos != string::npos) {
-      balanceOfQueryString = newString.substr(pos);
-   } else {
-      balanceOfQueryString = newString;
-   }
-
-   return name + balanceOfQueryString;
-}
