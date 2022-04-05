@@ -1,0 +1,289 @@
+Rule Evaluation
+PASS: 1
+chars(a) :- shift(a,b,c,d).
+  all='a'
+be(b,e) :- chars(b), chars(e).
+  b='a', e='a'
+ce(c,e) :- chars(c), chars(e).
+  c='a', e='a'
+bcd(b,c,d) :- chars(b), chars(c), chars(d).
+  b='a', c='a', d=
+ade(a,d,e) :- chars(a), chars(d), chars(e).
+  a='a', d='a', e=c
+combinations(a,b,c,d) :- be(b,d), ce(c,d), bcd(b,c,d), ade(a,b,c).
+  a='a', b='a', c='a', d='a'
+shift(a,b,c,d) :- shift(d,a,b,c).
+  a='b', b='c', c='d', d='a'
+PASS: 2
+chars(a) :- shift(a,b,c,d).
+  all='b'
+be(b,e) :- chars(b), chars(e).
+  b='a', e='b'
+  b='b', e='a'
+  b='b', e='b'
+ce(c,e) :- chars(c), chars(e).
+  c='a', e='b'
+  c='b', e='a'
+  c='b', e='b'
+bcd(b,c,d) :- chars(b), chars(c), chars(d).
+  b='a', c='b', d='b'
+  b='b', c='a', d='b'
+  b='b', c='b', d='b'
+ade(a,d,e) :- chars(a), chars(d), chars(e).
+  a='a', d='b', e='a'
+  a='b', d='a', e='a'
+  a='b', d='b', e='a'
+combinations(a,b,c,d) :- be(b,d), ce(c,d), bcd(b,c,d), ade(a,b,c).
+  a='a', b='a', c='b', d='a'
+  a='a', b='b', c='a', d='a'
+  a='a', b='b', c='b', d='a'
+  a='b', b='a', c='a', d='b'
+  a='b', b='a', c='b', d='b'
+  a='b', b='b', c='a', d='b'
+  a='b', b='b', c='b', d='b'
+shift(a,b,c,d) :- shift(d,a,b,c).
+  a='c', b='d', c='a', d='b'
+PASS: 3
+chars(a) :- shift(a,b,c,d).
+  all='c'
+be(b,e) :- chars(b), chars(e).
+  b='a', e='c'
+  b='b', e='c'
+  b='c', e='a'
+  b='c', e='b'
+  b='c', e='c'
+ce(c,e) :- chars(c), chars(e).
+  c='a', e='c'
+  c='b', e='c'
+  c='c', e='a'
+  c='c', e='b'
+  c='c', e='c'
+bcd(b,c,d) :- chars(b), chars(c), chars(d).
+  b='a', c='c', d=��0
+  b='b', c='c', d=��0
+  b='c', c='a', d=��0
+  b='c', c='b', d=��0
+  b='c', c='c', d=��0
+ade(a,d,e) :- chars(a), chars(d), chars(e).
+  a='a', d='c', e=p�0
+  a='b', d='c', e=p�0
+  a='c', d='a', e=p�0
+  a='c', d='b', e=p�0
+  a='c', d='c', e=p�0
+combinations(a,b,c,d) :- be(b,d), ce(c,d), bcd(b,c,d), ade(a,b,c).
+  a='a', b='a', c='c', d='a'
+  a='a', b='b', c='c', d='a'
+  a='a', b='c', c='a', d='a'
+  a='a', b='c', c='b', d='a'
+  a='a', b='c', c='c', d='a'
+  a='b', b='a', c='c', d='b'
+  a='b', b='b', c='c', d='b'
+  a='b', b='c', c='a', d='b'
+  a='b', b='c', c='b', d='b'
+  a='b', b='c', c='c', d='b'
+  a='c', b='a', c='a', d='c'
+  a='c', b='a', c='b', d='c'
+  a='c', b='a', c='c', d='c'
+  a='c', b='b', c='a', d='c'
+  a='c', b='b', c='b', d='c'
+  a='c', b='b', c='c', d='c'
+  a='c', b='c', c='a', d='c'
+  a='c', b='c', c='b', d='c'
+  a='c', b='c', c='c', d='c'
+shift(a,b,c,d) :- shift(d,a,b,c).
+  a='d', b='a', c='b', d='c'
+PASS: 4
+chars(a) :- shift(a,b,c,d).
+  all='d'
+be(b,e) :- chars(b), chars(e).
+  b='a', e='d'
+  b='b', e='d'
+  b='c', e='d'
+  b='d', e='a'
+  b='d', e='b'
+  b='d', e='c'
+  b='d', e='d'
+ce(c,e) :- chars(c), chars(e).
+  c='a', e='d'
+  c='b', e='d'
+  c='c', e='d'
+  c='d', e='a'
+  c='d', e='b'
+  c='d', e='c'
+  c='d', e='d'
+bcd(b,c,d) :- chars(b), chars(c), chars(d).
+  b='a', c='d', d='c'
+  b='b', c='d', d='c'
+  b='c', c='d', d='c'
+  b='d', c='a', d='c'
+  b='d', c='b', d='c'
+  b='d', c='c', d='c'
+  b='d', c='d', d='c'
+ade(a,d,e) :- chars(a), chars(d), chars(e).
+  a='a', d='d', e='c'
+  a='b', d='d', e='c'
+  a='c', d='d', e='c'
+  a='d', d='a', e='c'
+  a='d', d='b', e='c'
+  a='d', d='c', e='c'
+  a='d', d='d', e='c'
+combinations(a,b,c,d) :- be(b,d), ce(c,d), bcd(b,c,d), ade(a,b,c).
+  a='a', b='a', c='d', d='a'
+  a='a', b='b', c='d', d='a'
+  a='a', b='c', c='d', d='a'
+  a='a', b='d', c='a', d='a'
+  a='a', b='d', c='b', d='a'
+  a='a', b='d', c='c', d='a'
+  a='a', b='d', c='d', d='a'
+  a='b', b='a', c='d', d='b'
+  a='b', b='b', c='d', d='b'
+  a='b', b='c', c='d', d='b'
+  a='b', b='d', c='a', d='b'
+  a='b', b='d', c='b', d='b'
+  a='b', b='d', c='c', d='b'
+  a='b', b='d', c='d', d='b'
+  a='c', b='a', c='d', d='c'
+  a='c', b='b', c='d', d='c'
+  a='c', b='c', c='d', d='c'
+  a='c', b='d', c='a', d='c'
+  a='c', b='d', c='b', d='c'
+  a='c', b='d', c='c', d='c'
+  a='c', b='d', c='d', d='c'
+  a='d', b='a', c='a', d='d'
+  a='d', b='a', c='b', d='d'
+  a='d', b='a', c='c', d='d'
+  a='d', b='a', c='d', d='d'
+  a='d', b='b', c='a', d='d'
+  a='d', b='b', c='b', d='d'
+  a='d', b='b', c='c', d='d'
+  a='d', b='b', c='d', d='d'
+  a='d', b='c', c='a', d='d'
+  a='d', b='c', c='b', d='d'
+  a='d', b='c', c='c', d='d'
+  a='d', b='c', c='d', d='d'
+  a='d', b='d', c='a', d='d'
+  a='d', b='d', c='b', d='d'
+  a='d', b='d', c='c', d='d'
+  a='d', b='d', c='d', d='d'
+shift(a,b,c,d) :- shift(d,a,b,c).
+PASS: 5
+chars(a) :- shift(a,b,c,d).
+be(b,e) :- chars(b), chars(e).
+ce(c,e) :- chars(c), chars(e).
+bcd(b,c,d) :- chars(b), chars(c), chars(d).
+ade(a,d,e) :- chars(a), chars(d), chars(e).
+combinations(a,b,c,d) :- be(b,d), ce(c,d), bcd(b,c,d), ade(a,b,c).
+shift(a,b,c,d) :- shift(d,a,b,c).
+
+Schemes populated after 5 passes through the Rules.
+
+Query Evaluation
+shift(a,b,c,d)? Yes(4)
+  a='a', b='b', c='c', d='d'
+  a='b', b='c', c='d', d='a'
+  a='c', b='d', c='a', d='b'
+  a='d', b='a', c='b', d='c'
+chars(a)? Yes(4)
+  a='a'
+  a='b'
+  a='c'
+  a='d'
+be(b,e)? Yes(16)
+  b='a', e='a'
+  b='a', e='b'
+  b='a', e='c'
+  b='a', e='d'
+  b='b', e='a'
+  b='b', e='b'
+  b='b', e='c'
+  b='b', e='d'
+  b='c', e='a'
+  b='c', e='b'
+  b='c', e='c'
+  b='c', e='d'
+  b='d', e='a'
+  b='d', e='b'
+  b='d', e='c'
+  b='d', e='d'
+ade(a,d,e)? Yes(16)
+  a='a', d='a', e=�@0
+  a='a', d='b', e=�@0
+  a='a', d='c', e=�@0
+  a='a', d='d', e=�@0
+  a='b', d='a', e=�@0
+  a='b', d='b', e=�@0
+  a='b', d='c', e=�@0
+  a='b', d='d', e=�@0
+  a='c', d='a', e=�@0
+  a='c', d='b', e=�@0
+  a='c', d='c', e=�@0
+  a='c', d='d', e=�@0
+  a='d', d='a', e=�@0
+  a='d', d='b', e=�@0
+  a='d', d='c', e=�@0
+  a='d', d='d', e=�@0
+combinations(a,b,c,d)? Yes(64)
+  a='a', b='a', c='a', d='a'
+  a='a', b='a', c='b', d='a'
+  a='a', b='a', c='c', d='a'
+  a='a', b='a', c='d', d='a'
+  a='a', b='b', c='a', d='a'
+  a='a', b='b', c='b', d='a'
+  a='a', b='b', c='c', d='a'
+  a='a', b='b', c='d', d='a'
+  a='a', b='c', c='a', d='a'
+  a='a', b='c', c='b', d='a'
+  a='a', b='c', c='c', d='a'
+  a='a', b='c', c='d', d='a'
+  a='a', b='d', c='a', d='a'
+  a='a', b='d', c='b', d='a'
+  a='a', b='d', c='c', d='a'
+  a='a', b='d', c='d', d='a'
+  a='b', b='a', c='a', d='b'
+  a='b', b='a', c='b', d='b'
+  a='b', b='a', c='c', d='b'
+  a='b', b='a', c='d', d='b'
+  a='b', b='b', c='a', d='b'
+  a='b', b='b', c='b', d='b'
+  a='b', b='b', c='c', d='b'
+  a='b', b='b', c='d', d='b'
+  a='b', b='c', c='a', d='b'
+  a='b', b='c', c='b', d='b'
+  a='b', b='c', c='c', d='b'
+  a='b', b='c', c='d', d='b'
+  a='b', b='d', c='a', d='b'
+  a='b', b='d', c='b', d='b'
+  a='b', b='d', c='c', d='b'
+  a='b', b='d', c='d', d='b'
+  a='c', b='a', c='a', d='c'
+  a='c', b='a', c='b', d='c'
+  a='c', b='a', c='c', d='c'
+  a='c', b='a', c='d', d='c'
+  a='c', b='b', c='a', d='c'
+  a='c', b='b', c='b', d='c'
+  a='c', b='b', c='c', d='c'
+  a='c', b='b', c='d', d='c'
+  a='c', b='c', c='a', d='c'
+  a='c', b='c', c='b', d='c'
+  a='c', b='c', c='c', d='c'
+  a='c', b='c', c='d', d='c'
+  a='c', b='d', c='a', d='c'
+  a='c', b='d', c='b', d='c'
+  a='c', b='d', c='c', d='c'
+  a='c', b='d', c='d', d='c'
+  a='d', b='a', c='a', d='d'
+  a='d', b='a', c='b', d='d'
+  a='d', b='a', c='c', d='d'
+  a='d', b='a', c='d', d='d'
+  a='d', b='b', c='a', d='d'
+  a='d', b='b', c='b', d='d'
+  a='d', b='b', c='c', d='d'
+  a='d', b='b', c='d', d='d'
+  a='d', b='c', c='a', d='d'
+  a='d', b='c', c='b', d='d'
+  a='d', b='c', c='c', d='d'
+  a='d', b='c', c='d', d='d'
+  a='d', b='d', c='a', d='d'
+  a='d', b='d', c='b', d='d'
+  a='d', b='d', c='c', d='d'
+  a='d', b='d', c='d', d='d'

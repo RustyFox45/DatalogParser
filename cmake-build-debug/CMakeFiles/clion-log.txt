@@ -1,4 +1,4 @@
-/Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" /Users/loganlawson/CLionProjects/BYU/CS236/DatalogParser
+/Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" "/Users/toddlawson/My Drive/Personal/Logan/CS236/DatalogParser"
 -- Configuring done
 -- Generating done
--- Build files have been written to: /Users/loganlawson/CLionProjects/BYU/CS236/DatalogParser/cmake-build-debug
+-- Build files have been written to: /Users/toddlawson/My Drive/Personal/Logan/CS236/DatalogParser/cmake-build-debug

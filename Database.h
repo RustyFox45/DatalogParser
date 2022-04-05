@@ -197,9 +197,10 @@ public:
       oss << "Rule Evaluation" << endl;
       while(tuplesAdded) {
          passes++;
-         oss << "PASS: " << passes << endl;
+         //oss << "PASS: " << passes << endl;
          int tuplesAddedThisPass = 0;
          for (unsigned int x = 0; x < rules.size(); x++) {
+            Rule rule = rules[x];
             set<Tuple> tuplesAdded = evaluateRule(rules[x]);
             tuplesAddedThisPass += tuplesAdded.size();
             oss << rules[x].ruleString << endl;
